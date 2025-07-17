@@ -137,15 +137,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 import os
+
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # diretório dos seus arquivos estáticos durante o desenvolvimento
+    BASE_DIR / 'static',  # onde ficam seus arquivos estáticos no desenvolvimento
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # onde o collectstatic vai juntar tudo para produção
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
