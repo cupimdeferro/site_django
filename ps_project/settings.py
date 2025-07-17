@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-x3_i)l6%!8k**)8l4b=id8u55$iw9d+$8n_y2dd14##l*7nj!9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pixelsingular-d6270cf45d3c.herokuapp.com/']
+ALLOWED_HOSTS = ['pixelsingular-d6270cf45d3c.herokuapp.com', '127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -137,9 +138,12 @@ USE_TZ = True
 
 import os
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static',  # Ou o caminho onde você armazenará os arquivos estáticos
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',  # diretório dos seus arquivos estáticos durante o desenvolvimento
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
