@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login_form_cliente_style.css' %}">
+    <title>Login Page</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="form-send" method="POST" action="{% url 'cadastro_cliente_page' %}">
+                {% csrf_token %}
+                <h1>Cadastre-se</h1>
+                <div class="form-group">
+                    <input class="field-full" name="nome" type="text" placeholder="Nome Completo" required>
+                    <input class="field-full" name="cpf" type="text" maxlength="14" placeholder="CPF">
+                    <select class="field-half" name="genero" id="genero" name="genero" required>
+                        <option value="">Gênero</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                    <input class="field-half" name="telefone" type="tel" id="telefone" placeholder="(00) 90000-0000" maxlength="15" required>
+                    <input class="field-half" id="email" name="email" type="email" placeholder="Email" required>
+                    <input class="field-half" id="confirmar_email" name="confirmar_email" type="email" placeholder="Confirmar Email" required>
+                    <!-- Adicione identificadores aos campos de endereço -->
+                    <input class="field-half" id="cep" name="cep" type="text" placeholder="CEP" required>
+                    <input class="field-half" id="estado" name="estado" type="text" placeholder="Estado" required>
+                    <input class="field-half" id="cidade" name="cidade" type="text" placeholder="Cidade" required>
+                    <input class="field-half" id="logradouro" name="logradouro" type="text" placeholder="Logradouro" required>
+                    <input class="field-half" id="bairro" name="bairro" type="text" placeholder="Bairro" required>
+                    <input class="field-half" name="numero" type="text" placeholder="Nº" required>
+                    <input class="field-half" name="senha" id="senha" type="password" placeholder="Senha" required>
+                    <input class="field-half" id="confirmar_senha" type="password" placeholder="Confirmar Senha" required>
+                    <div class="termos">
+                        <input type="checkbox" id="termos" required>
+                        <label for="termos">Aceitar os termos de cadastro de acordo com a LGPD</label>
+                    </div>
+                </div> 
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Entrar</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <!-- <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a> -->
+                </div>
+                <span>ou use sua senha e email cadastrados</span>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Senha">
+                <a href="recuperar_senha.html">Esqueceu sua senha?</a>
+                <button>Entrar</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bem vindo ao Pixel Singular!</h1>
+                    <p>Para entrar na sua conta, clique no botão abaixo.</p>
+                    <button class="hidden" id="login">Entrar</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Novo Aqui?</h1>
+                    <p>Para começar sua jornada conosco, clique no botão abaixo.</p>
+                    <button class="hidden" id="register">Cadastre-se</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Carregar a URL dinamicamente -->
+    <script>
+        // A constante "cad_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript cad_Url.
+        const cad_Url = "{% url 'cadastro_cliente_page' %}";
+
+        // A constante "log_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript log_Url.
+        const log_Url = "{% url 'login_cliente_page' %}";
+    </script>
+    <!-- Referência ao arquivo JavaScript -->
+    <script src="{% static 'javascript/form_cliente_script.js' %}" defer></script>
+
+</body>
+
+</html>

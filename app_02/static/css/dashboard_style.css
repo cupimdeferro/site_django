@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+header {
+    background-color: #66f;
+    padding: 10px 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: fixed;
+    /* Mantém fixo no topo */
+    width: 100%;
+    /* Agora ocupa toda a largura da tela */
+    top: 0;
+    height: 100px;
+    z-index: 1000;
+}
+
+/* Logo centralizada absolutamente */
+/* Container da logo */
+:root {
+    --logo-size: 70px;
+    --logo-radius: 12px;
+    --text-color: #1a1a1a;
+    --highlight-color: #6610f2;
+    --font-size-lg: 1.8rem;
+    --font-size-sm: 0.9rem;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    gap: 0.8rem;
+}
+
+.logo a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: inherit;
+    transition: var(--transition);
+}
+
+.logo img {
+    width: var(--logo-size);
+    height: var(--logo-size);
+    object-fit: contain;
+    border-radius: var(--logo-radius);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 4px;
+    background: white;
+}
+
+.logo img:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.logo__title {
+    margin: 0;
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.3;
+    color: var(--text-color);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.logo__title span {
+    color: var(--highlight-color);
+    position: relative;
+}
+
+.logo__title span::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--highlight-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.logo a:hover .logo__title span::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.icons-header {
+    display: flex;
+    align-items: center;
+}
+
+.icons-header i {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 15px;
+    color: white;
+}
+
+.icons-header i:hover {
+    opacity: 0.7;
+}
+
+.info-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-header img {
+    width: 40px;
+    height: 40px;
+    margin-left: 8px;
+}
+
+.image-perfil {
+    border-radius: 50%;
+}
+
+/* Estilo para o dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    color: black;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown-content a,
+.dropdown-content ul li {
+    color: black;
+    padding: 3px 10px;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.dropdown-content ul a {
+    margin-left: 10px;
+}
+
+.dropdown-content a:hover,
+.dropdown-content ul li:hover {
+    background-color: #c7c7c7;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown img {
+    cursor: pointer;
+}
+
+.dropdown img:hover {
+    opacity: 0.8;
+}
+
+.bandeira {
+    display: flex;
+    align-self: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 100px;
+    /* Alinha abaixo do header */
+    width: 260px;
+    height: calc(100% - 60px);
+    background: #66f;
+    overflow-x: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+    margin-top: 20px;
+}
+
+.sidebar ul li {
+    width: 100%;
+    list-style: none;
+}
+
+.sidebar ul li:hover {
+    background: #fff;
+}
+
+.sidebar ul li:hover a {
+    color: #66f;
+}
+
+.sidebar ul li a {
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a i {
+    min-width: 60px;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+/* main */
+
+.main {
+    position: absolute;
+    top: 100px;
+    width: calc(100% - 260px);
+    min-height: calc(100vh - 60px);
+    left: 260px;
+    background: #f5f5f5;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Estilos para o modo escuro */
+.main.dark-mode {
+    background: #27194e;
+    color: #f5f5f5;
+}
+
+/* Estilos adicionais para os cards */
+.card {
+    background: #fff;
+    color: #473087;
+    transition: background 0.3s, color 0.3s;
+}
+
+.main.dark-mode .card {
+    background: #473087;
+    color: #f5f5f5;
+}
+
+.main.dark-mode .card-name {
+    background: #473087;
+    color: #f5f5f5;
+}
+
+.main.dark-mode .number {
+    color: #f5f5f5;
+}
+
+
+.number {
+    font-size: 2rem;
+}
+
+.icon-box {
+    font-size: 2rem;
+}
+
+/* Alteração de cores para o botão do tema */
+#theme-toggle {
+    background: #66f;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#theme-toggle:hover {
+    background: #444;
+}
+
+/* Estilos para o modo escuro do botão */
+.main.dark-mode #theme-toggle {
+    background: #444;
+    color: white;
+}
+
+.main.dark-mode #theme-toggle:hover {
+    background: #555;
+}
+
+
+.cards {
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.cards .card {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+    font-size: 20px;
+    font-weight: 500;
+    font-weight: bold;
+    color: #66f;
+}
+
+.card-name {
+    color: #888;
+    font-weight: 600;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.icon-box i {
+    font-size: 20px;
+    color: #66f;
+}
+
+
+/* charts */
+
+.charts {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.chart {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgb(78, 78, 80);
+    width: 100%;
+}
+
+.chart h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #666;
+    text-align: center
+}
+
+@media (max-width:1115px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .main {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+}
+
+@media (max-width:880px) {
+    .fa-bell {
+        justify-self: left;
+    }
+
+    .cards {
+        width: 100%;
+        padding: 35px 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+
+    .charts {
+        grid-template-columns: 1fr;
+    }
+
+    .doughnut-chart {
+        padding: 50px;
+    }
+
+    #doughnut {
+        padding: 50px;
+    }
+}
+
+@media (max-width:380px) {
+    .topbar {
+        grid-template-columns: 1fr 5fr 0.4fr 1fr;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .search {
+        width: 80%;
+    }
+
+    .search input {
+        padding: 0 20px;
+    }
+
+    .fa-bell {
+        margin-right: 5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .doughnut-chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+
+    .chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+    #doughnut {
+        padding: 0px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width:420px) {
+    .topbar {
+        grid-template-columns: 1fr 5fr 0.4fr 1fr;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .search {
+        width: 80%;
+    }
+
+    .search input {
+        padding: 0 20px;
+    }
+
+    .fa-bell {
+        margin-right: 5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .doughnut-chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+
+    .chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+    #doughnut {
+        padding: 0px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width:450px) {
+    .topbar {
+        grid-template-columns: 1fr 5fr 0.4fr 1fr;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .search {
+        width: 80%;
+    }
+
+    .search input {
+        padding: 0 20px;
+    }
+
+    .fa-bell {
+        margin-right: 5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .doughnut-chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+
+    .chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+    #doughnut {
+        padding: 0px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width:560px) {
+    .topbar {
+        grid-template-columns: 1fr 5fr 0.4fr 1fr;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .search {
+        width: 80%;
+    }
+
+    .search input {
+        padding: 0 20px;
+    }
+
+    .fa-bell {
+        margin-right: 5px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .doughnut-chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+
+    .chart {
+        padding: 10px;
+        width: 95%;
+    }
+
+    #doughnut {
+        padding: 0px;
+    }
+
+    .user {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Footer */
+footer {
+    background: #66f;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    margin-top: 700px;
+    /* Empurra o footer para o final */
+
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link para obter ícones na biblioteca Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard_style.css' %}" />
+    {% block extra_css %}
+    {% endblock %}
+    {% block extra_js %}
+    {% endblock %}
+    {% block external_libs %}
+    {% endblock %}
+    <title>
+      {% block title %}
+        Dashboard - {{ fotografo.nome_fotografo }}
+      {% endblock %}
+    </title>
+  </head>
+
+  <body>
+    <header>
+      <div class="info-header">
+        <div class="logo">
+          <a href="{% url 'carregar_home_page' %}">
+            <img src="/media/images/logo.png" alt="Logo Pixel Singular">
+            <h4 class="logo__title">Pixel<span>Singular</span></h4>
+          </a>
+        </div>
+      </div>
+      <div style="align-items: center;" class="info-header">
+        <button id="theme-toggle" class="theme-toggle"><i id="theme-icon" class="fas fa-moon"></i></button>
+        <i class="fa-solid fa-envelope-open-text"></i>
+
+        <i class="fa-regular fa-bell"></i>
+
+        <div class="dropdown">
+          <img class="image-perfil"
+            src="{% if request.session.fotografo_imagem_sessao %}
+              {{ request.session.fotografo_imagem_sessao }}
+            {% else %}
+              {% static 'images/perfis/imagem_padrao.png' %}
+            {% endif %}" />
+          <div class="dropdown-content">            
+            <ul>
+              <li onclick="translatePage('en')">
+                <div class="bandeira">
+                  <img src="/media/images/dashboard/bandeira_eua.png" alt="EUA" /> Inglês
+                </div>
+              </li>
+              <li onclick="translatePage('pt')">
+                <div class="bandeira">
+                  <img src="/media/images/dashboard/bandeira_brasil.png" alt="Brasil"/> Português
+                </div>
+              </li>
+              <li onclick="translatePage('es')">
+                <div class="bandeira">
+                  <img src="/media/images/dashboard/bandeira_espanha.png" alt="Espanha" /> Espanhol
+                </div>
+              </li>
+              <a href="{% url 'logout_prof' %}"><i class="bi bi-box-arrow-left"></i> Sair</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="{% url 'carregar_dashboard' %}">
+              <i class="fas fa-th-large"></i>
+              <div>Dashboard</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="{% url 'carregar_info_profissional' %}">
+              <i class="fa-sharp fa-solid fa-image-portrait"></i>
+              <div>Fotógrafos</div>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'carregar_info_fotografia' %}">
+              <i class="fa-solid fa-photo-film"></i>
+              <div>Fotografias</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="fas fa-cog"></i>
+              <div>Configuração</div>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'carregar_info_suporte' %}">
+              <i class="fas fa-question"></i>
+              <div>Suporte</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <script>
+      // Seleciona o botão de alternância de tema e o ícone de tema
+      const themeToggleButton = document.getElementById('theme-toggle')
+      const themeIcon = document.getElementById('theme-icon')
+      
+      // Seleciona os elementos que precisam ser alterados
+      const mainElement = document.querySelector('.main')
+      const sidebar = document.querySelector('.sidebar')
+      const header = document.querySelector('header')
+      const footer = document.querySelector('footer')
+      const cards = document.querySelectorAll('.card')
+      const dropdownContent = document.querySelector('.dropdown-content')
+      const formGroups = document.querySelectorAll('.form-group')
+      const buttons = document.querySelectorAll('button')
+      
+      // Verifica o estado do tema salvo no localStorage
+      const currentTheme = localStorage.getItem('theme')
+      
+      // Salva a preferência no localStorage
+      localStorage.setItem('theme', 'light')
+      // Adiciona um evento de clique ao botão para alternar o tema
+      themeToggleButton.addEventListener('click', () => {
+        // Alterna a classe dark-mode no corpo, na sidebar, no header, etc.
+        document.body.classList.toggle('dark-mode')
+        mainElement.classList.toggle('dark-mode')
+        sidebar.classList.toggle('dark-mode')
+        header.classList.toggle('dark-mode')
+        footer.classList.toggle('dark-mode')
+        dropdownContent.classList.toggle('dark-mode')
+      
+        cards.forEach((card) => card.classList.toggle('dark-mode'))
+        formGroups.forEach((group) => group.classList.toggle('dark-mode'))
+        buttons.forEach((button) => button.classList.toggle('dark-mode'))
+      
+        // Alterar o ícone do tema
+        if (document.body.classList.contains('dark-mode')) {
+          themeIcon.classList.remove('fa-moon')
+          themeIcon.classList.add('fa-sun')
+          // Salva a preferência no localStorage
+          localStorage.setItem('theme', 'dark')
+        } else {
+          themeIcon.classList.remove('fa-sun')
+          themeIcon.classList.add('fa-moon')
+          // Salva a preferência no localStorage
+          localStorage.setItem('theme', 'light')
+        }
+      })
+    </script>
+  </body>
+</html>

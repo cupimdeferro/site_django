@@ -1,0 +1,609 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+/* main */
+
+.main {
+    position: absolute;
+    top: 100px;
+    width: calc(100% - 260px);
+    min-height: calc(100vh - 60px);
+    left: 260px;
+    background: #f5f5f5;
+    color: #000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos para o modo escuro */
+.main.dark-mode,
+.dashboard-3.dark-mode {
+    /* background: #2c3e50; */
+    background: #2f1b66;
+    color: #ecf0f1;
+}
+
+/* Estilos para as tabelas no modo escuro */
+.dashboard-3.dark-mode table {
+    /* background-color: #34495e; */
+    background: #473087;
+    color: #ecf0f1;
+}
+
+/* Cabeçalho da tabela no modo escuro */
+.dashboard-3.dark-mode .cabecalho_tabela {
+    /* background-color: #3e4e64; */
+    background-color: #473087;
+    color: #ecf0f1;
+}
+
+/* Linhas da tabela no modo escuro */
+.dashboard-3.dark-mode .item-tabela {
+    /* background-color: #2c3e50; */
+    background-color: #2f1b66;
+}
+
+.dashboard-3.dark-mode .item-tabela th,
+.dashboard-3.dark-mode .item-tabela td {
+    color: #ecf0f1;
+}
+
+/* Estilo dos botões no modo escuro */
+.dashboard-3.dark-mode .botoes-2 {
+    /* background-color: #5c6e7a; */
+    background-color: #2f1b66;
+    color: #ecf0f1;
+    border: none;
+    cursor: pointer;
+}
+
+/* Alteração do ícone de upload no modo escuro */
+.dashboard-3.dark-mode button {
+    color: #ecf0f1;
+}
+
+/* Estilo do formulário no modo escuro */
+.dashboard-3.dark-mode form {
+    /* background-color: #34495e; */
+    background-color: #473087;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.dashboard-3.dark-mode input[type="file"] {
+    color: #ecf0f1;
+}
+
+.card {
+    background: #fff;
+    color: #473087;
+    transition: background 0.3s, color 0.3s;
+}
+
+.main.dark-mode .card {
+    background: #473087;
+    color: #f5f5f5;
+}
+
+.main.dark-mode .card-name {
+    /* background: #473087; */
+    color: #f5f5f5;
+}
+
+.main.dark-mode .number {
+    /* background: #473087; */
+    color: #f5f5f5;
+}
+
+
+.main.dark-mode .icon-box {
+    /* background: #473087; */
+    color: #f5f5f5;
+}
+
+.cards {
+    width: 100%;
+    padding: 35px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.cards .card {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.number {
+    font-size: 20px;
+    font-weight: 500;
+    font-weight: bold;
+    color: #66f;
+}
+
+.card-name {
+    color: #888;
+    font-weight: 600;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.icon-box i {
+    font-size: 20px;
+    color: #66f;
+}
+
+.dashboard-3 {
+    background-color: #fff;
+    padding: 40px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgb(14, 13, 13);
+    margin-top: 40px;
+    width: 60%;
+}
+
+.upload {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.cabecalho_tabela {
+    width: 100%;
+    display: table-header-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+
+}
+
+.cabecalho_tabela {
+    /* color: rgb(9, 9, 241); */
+    color: #f2f2f2;
+
+}
+
+th,
+td {
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(102, 102, 255, 0.2);
+
+}
+
+th {
+    background-color: #66F;
+
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+}
+
+.man-fotos {
+    margin-top: 30px;
+    /* background-color: #464242; */
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fotos-existentes {
+    margin-top: 20px;
+}
+
+.foto {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.foto img {
+    max-width: 80px;
+    border-radius: 5px;
+}
+
+.foto button {
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.foto button:hover {
+    color: #171f8d;
+}
+
+.foto button i {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.foto .botoes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Modal Styles */
+#editModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* .modal-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
+
+/* .modal-actions button {
+    margin: 10px;
+} */
+
+.modal-navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: 100%;
+
+}
+
+/* .nav-btn {
+    background-color: #66f;
+    border: none;
+    font-size: 10px;
+    margin: 100px;
+
+} */
+
+.close {
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(9, 9, 241);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.action-btn {
+    background-color: #664caf;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+}
+
+.action-btn:hover {
+    background-color: #45a049;
+}
+
+.dashboard-perfil {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    /* Alinha a imagem e o formulário no topo */
+    gap: 20px;
+    /* Espaçamento entre imagem e formulário */
+    padding: 20px;
+    /* Adiciona espaço interno na seção */
+    background-color: #f9f9f9;
+    /* Cor de fundo clara para destacar */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra leve */
+    margin-bottom: 20px;
+}
+
+/* Estilo da imagem de perfil */
+.foto-perfil-img {
+    max-width: 120px;
+    /* Largura máxima da imagem */
+    height: auto;
+    /* Mantém proporção da imagem */
+    border-radius: 50%;
+    /* Torna a imagem circular */
+    border: 2px solid #ccc;
+    /* Adiciona borda fina */
+    object-fit: cover;
+    /* Garante que a imagem seja centralizada */
+}
+
+/* Estilo do formulário */
+.form-perfil {
+    flex: 1;
+    /* Faz o formulário ocupar o restante do espaço */
+    display: flex;
+    flex-direction: column;
+    /* Organiza elementos em coluna */
+    gap: 15px;
+    /* Espaçamento entre os campos */
+    width: 100%;
+}
+
+/* Estilo para labels */
+.lbl-perfil {
+    font-weight: bold;
+    /* Destaca o texto */
+    color: #333;
+    /* Cor do texto */
+}
+
+/* Campos de entrada */
+.inpt-perfil,
+textarea {
+    width: 100%;
+    /* Ocupa toda a largura disponível */
+    padding: 10px;
+    /* Espaço interno dos campos */
+    border: 1px solid #ccc;
+    /* Borda padrão */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    font-size: 16px;
+    /* Texto legível */
+    background-color: #fff;
+    /* Fundo branco */
+}
+
+/* Ajuste específico para textarea */
+textarea {
+    resize: vertical;
+    /* Permite redimensionar apenas verticalmente */
+    min-height: 100px;
+    /* Altura mínima */
+}
+
+/* Botão de enviar */
+button {
+    padding: 10px 15px;
+    /* Espaço interno */
+    background-color: #66f;
+    /* Cor de fundo azul */
+    color: #fff;
+    /* Cor do texto branco */
+    border: none;
+    /* Remove bordas padrão */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    font-size: 16px;
+    /* Tamanho do texto */
+    cursor: pointer;
+    /* Muda cursor ao passar sobre o botão */
+    transition: background-color 0.3s ease;
+    /* Animação suave na mudança de cor */
+}
+
+button:hover {
+    background-color: #332836a1;
+    /* Cor mais escura ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dashboard-perfil {
+        flex-direction: column;
+        /* Coloca imagem e formulário em coluna */
+        align-items: center;
+        /* Centraliza conteúdo */
+    }
+
+    .foto-perfil {
+        max-width: 100px;
+        /* Reduz tamanho da imagem */
+    }
+}
+
+@media (max-width:1115px) {
+    .sidebar {
+        width: 60px;
+    }
+
+    .main {
+        width: calc(100% - 60px);
+        left: 60px;
+    }
+}
+
+@media (max-width:880px) {
+    .fa-bell {
+        justify-self: left;
+    }
+
+    .cards {
+        width: 100%;
+        padding: 35px 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 20px;
+    }
+}
+
+
+@media (max-width:500px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* Media Queries para diferentes tamanhos de tela */
+@media (max-width: 1024px) {
+    .dashboard-3 {
+        width: 80%;
+        padding: 30px;
+    }
+
+    .upload {
+        max-width: 900px;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .upload table {
+        min-width: 100%;
+    }
+
+    .modal-navigation {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-3 {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .upload {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    .upload table {
+        min-width: 700px;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .foto img {
+        max-width: 60px;
+    }
+
+    .dashboard-perfil {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .upload table, .upload thead, .upload tbody, .upload th, 
+    .upload td, .upload tr {
+        display: block;
+    }
+    
+    .upload thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .upload tr { border: 1px solid #ccc; }
+    
+    .upload td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+    }
+    
+    .upload td:before {
+        position: absolute;
+        left: 6px;
+        content: attr(data-label);
+        font-weight: bold;
+    }
+}
+
+    .dashboard-3 {
+        width: 100%; /* Mude para 100% ou use max-width */
+        max-width: 1200px; /* Opcional: define uma largura máxima */
+        padding: 20px;
+        box-sizing: border-box; /* Inclui padding na largura total */
+    }
+    .upload {
+    overflow-x: auto;
+    width: 100%;
+    max-width: 100%;
+    }
+
+    .upload table {
+        width: 100%;
+        min-width: 700px; /* Largura mínima antes de aparecer a barra de rolagem */
+    }
+    th, td {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+
+
+    .foto img {
+        max-width: 50px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+/* //////////////////////////////////////////////////////////////////////// */
+
+/* 
+.footer-fotos {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+    margin-top: 50%;
+
+} */
+
+
+
+
+/* Footer */
+footer {
+    background: #66f;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    /* Empurra o footer para o final */
+    margin-top: 700px;
+
+}

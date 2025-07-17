@@ -1,0 +1,75 @@
+{% extends 'base_dashboard.html' %}
+
+{% block extra_js %}
+  <!-- Scripts e bibliotecas específicos deste template" -->
+  {% load static %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <script src="{% static 'javascript/chart_01.js' %}" defer></script>
+  <script src="{% static 'javascript/chart_02.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="cards">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-name">Categorias Mais Curtidas</div>
+        <div class="number">1217</div>
+      </div>
+      <div class="icon-box">
+        <i class="fas fa-user-graduate"></i>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="card-name">Número de Curtidas</div>
+        <div class="number">600</div>
+      </div>
+      <div class="icon-box">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="card-name">Total de Fotografias</div>
+        <div class="number">{{ total_fotos }} Fotos</div>
+      </div>
+      <div class="icon-box">
+        <i class="fa-solid fa-photo-film"></i>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="card-name">Último Upload</div>
+        <div class="number">
+          {% if data_ultimo_upload  %}
+            {{ data_ultimo_upload|date:'j M Y' }}
+          {% else %}
+            Sem Upload
+          {% endif %}
+        </div>
+      </div>
+      <div class="icon-box">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+      </div>
+    </div>
+  </div>
+  <div class="charts">
+    <div class="chart">
+      <h2>N° fotos curtidas por categorias</h2>
+      <div>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+    <div class="chart doughnut-chart">
+      <h2>Visualização por categorias</h2>
+      <div>
+        <canvas id="doughnut"></canvas>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© 2024 Dashboard de Fotografias</p>
+  </footer>
+</div>
+{% endblock %}

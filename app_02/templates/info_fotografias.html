@@ -1,0 +1,369 @@
+{% extends 'base_dashboard.html' %}
+
+{% load static %}
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/info_fotografias.css' %}" />
+{% endblock %}
+{% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+{% block external_libs %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Adicionar o Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+{% endblock %}
+
+{% block title %} Informações de Fotografias {% endblock %}
+
+{% block content %}
+  <div class="main">
+    <div class="cards">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-name">Categorias Mais Curtidas</div>
+          <div class="number">1217</div>
+        </div>
+        <div class="icon-box">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-name">Número de Curtidas</div>
+          <div class="number">600</div>
+        </div>
+        <div class="icon-box">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-name">Total de Fotografias</div>
+          <div class="number">{{ total_fotos }} Fotos</div>
+        </div>
+        <div class="icon-box">
+          <i class="fa-solid fa-photo-film"></i>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-name">Último Upload</div>
+          <div class="number">
+            {% if data_ultimo_upload  %}
+              {{ data_ultimo_upload|date:'j M Y' }}
+            {% else %}
+              Sem Upload
+            {% endif %}
+
+          </div>
+        </div>
+        <div class="icon-box">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+      </div>
+    </div>
+    <main class="man-fotos">
+      <!-- Seção de Fotografias -->
+      <section id="fotos" class="dashboard-3">
+        <h2>Arquivos Carregados</h2>
+        <!-- Tabela de fotos -->
+        <table class="upload">
+          <thead class="cabecalho_tabela">
+            <tr class="item-tabela">
+              <th>Nome do Arquivo</th>
+              <th>Formato</th>
+              <th>Tamanho</th>
+              <th>Data</th>
+              <th>Hora</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for foto in fotos %}
+              <tr>
+                <td>{{ foto.nome_arquivo_fotografia }}</td>
+                <td>{{ foto.formato_fotografia }}</td>
+                <td>{{ foto.tamanho_fotografia }}</td>
+                <td>{{ foto.data_upload_fotografia|date:'d-m-Y' }}</td>
+                <td>{{ foto.hora_upload_fotografia|time:'H:i:s' }}</td>
+                <td>
+                  <button class="botoes-2" onclick="openModal('{{ foto.fotografia.url }}')"><i class="fa fa-eye"></i></button>
+                  <button class="botoes-2" onclick="openModalDelete('{{ foto.id_fotografia }}')"><i class="fa fa-trash-alt"></i></button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!-- Botão de upload -->
+        <button onclick="triggerFileInput()"><i class="fa fa-cloud-upload-alt"></i> Carregar Foto</button>
+        <form id="uploadForm" method="post" enctype="multipart/form-data" style="display:none;">
+          {% csrf_token %}
+          <input type="file" id="upload-photo" name="upload-photo" accept="image/*" onchange="handleFileSelect(event)" required/>
+        </form>
+
+        {% comment %} <form id="uploadForm" onsubmit="uploadPhoto(event)">
+          <input type="file" accept="image/*" id="upload-photo" name="upload-photo" style="display: none;" onchange="handleFileSelect(event)" required />
+          <button type="button" onclick="triggerFileInput()"><i class="fa fa-cloud-upload-alt"></i> Fazer Upload</button>
+        </form>
+      </section> {% endcomment %}
+
+      <!-- Modal de Exibição -->
+      <div id="editModal" class="modal" style="display: none;" onclick="closeModal(event)">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="editImage" class="modal-navigation" onclick="event.stopPropagation()" src="" alt="Foto de Edição" />
+        {% comment %} <div class="modal-content" onclick="event.stopPropagation()">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h3>Pixel Singular</h3>
+
+          <!-- Navegação de Fotos -->
+          <div class="modal-navigation">
+            <button class="nav-btn prev" onclick="navigatePhoto(-1)">&#10094;</button>
+            <img id="editImage" src="" alt="Foto de Edição" />
+            <button class="nav-btn next" onclick="navigatePhoto(1)">&#10095;</button>
+          </div>
+
+          <div class="modal-actions">
+            <!-- Formulário de Upload -->
+            <form id="uploadForm" onsubmit="uploadPhoto(event)">
+              <!-- Input file invisível -->
+              <input type="file" id="upload-photo" name="upload-photo" style="display: none;" onchange="handleFileSelect(event)" />
+            </form>
+          </div>
+        </div> {% endcomment %}
+      </div>
+      <!-- Modal de visualização (pode customizar com CSS) -->
+      {% comment %} <div class="modal" id="modal" style="display: none;">
+        <img id="modalImage" src="" style="max-width:400px;" />
+        <button onclick="closeModal()">Fechar &times;</button>
+      </div> {% endcomment %}
+    </main>
+    <footer>
+      <p>© 2024 Dashboard de Fotografias</p>
+    </footer>
+  </div>
+  <script>
+    {% comment %} let photos = ['foto1.jpg', 'foto2.jpg', 'foto3.jpg']; // Exemplo de lista de fotos
+    let currentPhotoIndex = 0; // Armazena o índice da foto atual {% endcomment %}
+
+    // Função para abrir a modal de edição e definir a foto inicial
+    function openModal(url) { // (photo)
+        // currentPhotoIndex = photos.indexOf(photo); // Encontra o índice da foto
+        document.getElementById('editImage').src = url;   // photos[currentPhotoIndex]; // Exibe a foto 
+        document.getElementById('editModal').style.display = "block"; // Exibe a modal
+    }
+{% comment %} 
+    function openModal(url) {
+      document.getElementById('modalImage').src = url;
+      document.getElementById('modal').style.display = 'block';
+  } {% endcomment %}
+
+    // Função para abrir a modal de exclusão
+    {% comment %} function openModalDelete(photo) {
+        currentPhotoIndex = photos.indexOf(photo); // Encontra o índice da foto
+        if (confirm('Tem certeza que deseja excluir esta foto?')) {
+            photos.splice(currentPhotoIndex, 1); // Remove a foto do array
+            alert('Foto excluída com sucesso!');
+            closeModal(); // Fecha a modal após exclusão
+        }
+    } {% endcomment %}
+
+    // Função para fechar a modal
+    function closeModal(event) {
+        if (event) event.stopPropagation(); // Impede o clique fora da modal de propagação
+        document.getElementById('editModal').style.display = "none"; // Oculta a modal
+    }
+
+    // Função para navegar pelas fotos (usando as setas)
+    {% comment %} function navigatePhoto(direction) {
+        currentPhotoIndex += direction;
+
+        if (currentPhotoIndex < 0) currentPhotoIndex = photos.length - 1; // Volta para a última foto
+        if (currentPhotoIndex >= photos.length) currentPhotoIndex = 0; // Vai para a primeira foto
+
+        document.getElementById('editImage').src = photos[currentPhotoIndex]; // Atualiza a imagem na modal
+    }
+
+    // Função de upload de fotos
+    {% comment %} function uploadPhoto(event) {
+        event.preventDefault(); // Impede o envio do formulário
+
+        let fileInput = document.getElementById('upload-photo');
+        if (fileInput.files && fileInput.files[0]) {
+            let reader = new FileReader();
+
+            reader.onload = function (e) {
+                photos.push(e.target.result); // Adiciona a foto ao array de fotos
+                alert('Foto enviada com sucesso!');
+            }
+
+            reader.readAsDataURL(fileInput.files[0]); // Lê a foto enviada
+        }
+    } {% endcomment %}
+
+    // Função para disparar o clique no input file
+    {% comment %} function triggerFileInput() {
+        document.getElementById('upload-photo').click();
+    }
+
+    // Função para lidar com o arquivo selecionado
+    function handleFileSelect(event) {
+        let fileInput = event.target;
+        if (fileInput.files && fileInput.files[0]) {
+            // Aqui você pode processar o arquivo selecionado
+            let file = fileInput.files[0];
+            alert('Arquivo selecionado: ' + file.name);
+        }
+    }
+
+    // Função para realizar o upload, caso necessário
+    function uploadPhoto(event) {
+        event.preventDefault(); // Impede o envio do formulário se necessário
+        alert("Upload feito!");
+        // Lógica para o upload do arquivo
+    } {% endcomment %}
+
+
+    function translatePage(language) {
+        if (language) {
+            alert('A funcionalidade de tradução para ' + language + ' será implementada.');
+        }
+    }
+</script>
+<script>
+    // Pega o botão de alternância de tema
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const mainDiv = document.querySelector('.main');
+    const dashboardFotos = document.querySelector('.dashboard-3'); // Seção de fotos
+
+    // Função para alternar o tema
+    themeToggleButton.addEventListener('click', () => {
+        mainDiv.classList.toggle('dark-mode');
+        // Alterna a classe 'dark-mode' na seção de fotos
+        dashboardFotos.classList.toggle('dark-mode');
+
+        // Alterar o ícone entre lua crescente (modo claro) e lua cheia (modo escuro)
+        if (mainDiv.classList.contains('dark-mode')) {
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    });
+</script>
+<script>
+
+  function triggerFileInput() {
+      document.getElementById('upload-photo').click();
+  }
+  
+  function handleFileSelect(event) {
+      let fileInput = event.target;
+      if (fileInput.files && fileInput.files[0]) {
+          Swal.fire({
+              title: 'Categoria Para a Foto',
+              input: 'select',
+              inputOptions: {
+                  {% for categoria in categorias %}
+                      '{{ categoria.id_categoria }}': '{{ categoria.descricao_categoria }}',
+                  {% endfor %}
+              },
+              inputPlaceholder: 'Selecione uma Categoria: ',
+              showCancelButton: true,
+          }).then((result) => {
+              if (result.isConfirmed && result.value) {
+                  enviarUploadComCategoria(result.value);
+              } else {
+                  Swal.fire('Upload cancelado');
+              }
+          });
+      }
+  }
+  
+  function enviarUploadComCategoria(categoria_id) {
+      let formData = new FormData();
+      let fileInput = document.getElementById('upload-photo');
+      formData.append('upload-photo', fileInput.files[0]);
+      formData.append('categoria_id', categoria_id);
+  
+      fetch("", {
+          method: "POST",
+          headers: {
+              'X-CSRFToken': getCookie('csrftoken')
+          },
+          body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.status === 'success') {
+              Swal.fire('Concluído!', 'Foto enviada com sucesso!', 'success').then(() => {
+                  location.reload();
+              });
+          }
+      })
+      .catch(error => {
+          console.error('Erro:', error);
+      });
+  }
+  
+  function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+          let cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+              let cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+  }
+{% comment %}   
+  function openModal(url) {
+      document.getElementById('modalImage').src = url;
+      document.getElementById('modal').style.display = 'block';
+  }
+  
+  function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+  }
+{% endcomment %}
+  function openModalDelete(idFoto) {
+      Swal.fire({
+        title: 'Tem certeza?',
+        text: 'Esta ação não pode ser desfeita!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, excluir',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch("{% url 'deletar_fotografia' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'id_fotografia=' + idFoto
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire('Excluída!', 'A foto foi removida.', 'success').then(() => {
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire('Erro', data.message || 'Erro ao excluir.', 'error');
+                }
+            });
+        }
+    });
+  } 
+</script>
+{% endblock %}

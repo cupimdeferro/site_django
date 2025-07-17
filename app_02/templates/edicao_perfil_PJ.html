@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Adicionar o Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edicao_perfil_PJ.css' %}" />
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Dashboard de Fotografias</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="info-header">
+        <div class="logo">
+          <h3>PixelSingular</h3>
+        </div>
+      </div>
+      <div style="align-items: center;" class="info-header">
+        <button id="theme-toggle" class="theme-toggle"><i id="theme-icon" class="fas fa-moon"></i></button>
+        <i class="fa-solid fa-envelope-open-text"></i>
+
+        <i class="fa-regular fa-bell"></i>
+
+        <div class="dropdown">
+          <img class="image-perfil"
+            src="{% if request.session.fotografo_imagem_sessao %}
+              {{ fotografo.imagem_perfil_fotografo.url }}
+            {% else %}
+                            
+              media/images/perfis/imagem_padrao.png
+
+            {% endif %}" />
+
+          <div class="dropdown-content">
+            <a href="#">Sair</a>
+            <a href="#">Idiomas</a>
+            <ul>
+              <li onclick="translatePage('en')">
+                <div class="bandeira">
+                  <img src="imagens/eua.png" alt="EUA" width="20" /> Inglês
+                </div>
+              </li>
+              <li onclick="translatePage('pt')">
+                <div class="bandeira">
+                  <img src="imagens/brasil.png" alt="Brasil" width="20" /> Português
+                </div>
+              </li>
+              <li onclick="translatePage('es')">
+                <div class="bandeira">
+                  <img src="imagens/espanha.png" alt="Espanha" width="20" /> Espanhol
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="sidebar">
+        <ul>
+          <li>
+            <a href="index.html">
+              <i class="fas fa-th-large"></i>
+              <div>Dashboard</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="dashfotografoPJ.html">
+              <i class="fa-sharp fa-solid fa-image-portrait"></i>
+              <div>Fotógrafos</div>
+            </a>
+          </li>
+          <li>
+            <a href="GF.html">
+              <i class="fa-solid fa-photo-film"></i>
+              <div>Fotografias</div>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <i class="fas fa-cog"></i>
+              <div>Configuração</div>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fas fa-question"></i>
+              <div>Suporte</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <main class="main-fotos">
+      <!-- Seção de Perfil -->
+
+      <section id="perfil" class="dashboard-section">
+        <form>
+          <section id="perfil" class="dashboard-perfil">
+            <h2>Perfil</h2>
+            <img class="foto-perfil" 
+              src="{% if request.session.fotografo_imagem_sessao %}
+                {{ fotografo.imagem_perfil_fotografo.url }}
+              {% else %}                
+                media/images/perfis/imagem_padrao.png
+              {% endif %}"/>
+            <div class="form-perfil">
+              <label for="nome" class="lbl-perfil">Nome:</label>
+              <input type="text" name="nome" class="inpt-perfil" placeholder="Seu nome" value="{{ fotografo.nome_fotografo }}" disabled />
+
+              <label for="biografia" class="lbl-perfil">Biografia:</label>
+              <textarea name="biografia" placeholder="Escreva sua biografia" disabled>{{ fotografo.descricao_fotografo }}</textarea>
+            </div>
+          </section>
+
+          <div class="container" id="container">
+            <div class="form-container sign-up">
+              <form class="editar" method="POST" id="form-editar" enctype="multipart/form-data" action="{% url 'atualizar_info_profPJ' %}">
+                <h1>Informações Pessoais</h1>
+                <div class="form-group">
+                  <div class="alt-foto">
+                    <label class="label-alt-foto" for="foto-perfil">Alterar Foto de Perfil:</label>
+                    <input class="field-special" type="file" accept="image/*" id="foto-perfil" name="foto-perfil" />
+                  </div>
+                  <input class="field-half" type="text" name="razao_social" placeholder="Razão Social" value="{{ fotografo_pj.razao_social_fotografo_pj }}"/>
+                  <input class="field-half" id="cnpj" type="text" maxlength="18" name="cnpj" placeholder="CNPJ" value="{{ fotografo_pj.cnpj_fotografo_pj }}"/>
+                  <input class="field-half" type="text" name="nome" id="nome" placeholder="Nome Completo" value="{{ fotografo.nome_fotografo }}"/>
+                  <input class="field-half" type="tel"  name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15" value="{{ fotografo.telefone_fotografo }}"/>
+                  <input class="field-half" id="email" type="email" name="email" placeholder="Email" value="{{ fotografo.email_fotografo }}"/>
+                  <input class="field-half" id="confirmar_email" type="email" placeholder="Confirmar Email"/>
+
+                  <input class="field-thirsty" id="cep" type="text" name="cep" placeholder="CEP" value="{{ endereco.cep_endereco_fotografo }}"/>
+                  <input class="field-thirsty" id="estado" type="text" name="estado" placeholder="Estado" value="{{ endereco.estado_endereco_fotografo }}"/>
+                  <input class="field-thirsty" id="cidade" type="text" name="cidade" placeholder="Cidade" value="{{ endereco.cidade_endereco_fotografo }}"/>
+
+                  <input class="field-thirsty" id="logradouro" type="text" name="logradouro" placeholder="Logradouro" value="{{ endereco.logradouro_endereco_fotografo }}"/>
+                  <input class="field-thirsty" id="bairro" type="text" name="bairro" placeholder="Bairro" value="{{ endereco.bairro_endereco_fotografo }}"/>
+                  <input class="field-thirsty" type="text" name="numero" placeholder="Nº" value="{{ endereco.numero_endereco_fotografo }}"/>
+
+                  <input class="field-half" type="password" name="senha" placeholder="Senha" disabled/>
+                  <input class="field-half" type="password" placeholder="Confirmar Senha" disabled/>
+
+                  <select class="field-half" id="raio_atendimento" name="raio_atendimento">
+                    <option value="">Raio de Atendimento</option>
+                    <option value="10km" {% if fotografo.raio_atendimento_fotografo == '10km' %}selected{% endif %}>Até 10km</option>
+                    <option value="20km" {% if fotografo.raio_atendimento_fotografo == '20km' %}selected{% endif %}>Até 20km</option>
+                    <option value="50km" {% if fotografo.raio_atendimento_fotografo == '50km' %}selected{% endif %}>Até 50km</option>
+                    <option value="70km" {% if fotografo.raio_atendimento_fotografo == '70km' %}selected{% endif %}>Até 70km</option>
+                    <option value="100km" {% if fotografo.raio_atendimento_fotografo == '100km' %}selected{% endif %}>Até 100km</option>
+                    <option value="km_livre" {% if fotografo.raio_atendimento_fotografo == 'km_livre' %}selected{% endif %}>Atendimento após orçamento</option>
+                    <option value="0km" {% if fotografo.raio_atendimento_fotografo == '0km' %}selected{% endif %}>Atendimento online</option>
+                  </select>
+
+                  <input class="input_bigger" type="url" name="instagram" placeholder="Link do Instagram" maxlength="100" value="{{ fotografo.redesocial_fotografo }}" />
+
+                  <textarea class="field-full" name="descricao" id="biografia" placeholder="Fotógrafo, faça uma descrição que aparecerá no seu perfil...">{{ fotografo.descricao_fotografo }}</textarea>
+                </div>
+
+                <button type="submit"><i class="fa-solid fa-save"></i> Salvar Alterações</button>
+              </form>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      function translatePage(language) {
+        if (language) {
+          alert('A funcionalidade de tradução para ' + language + ' será implementada.')
+        }
+      }
+    </script>
+    <script>
+      // Pega o botão de alternância de tema
+      const themeToggleButton = document.getElementById('theme-toggle')
+      const themeIcon = document.getElementById('theme-icon')
+      
+      // Função para alternar o tema
+      themeToggleButton.addEventListener('click', () => {
+        // Alterna a classe 'dark-mode' no body e outras seções
+        document.body.classList.toggle('dark-mode')
+        const mainFotos = document.querySelector('.main-fotos')
+        const dashboardPerfil = document.querySelector('.dashboard-perfil')
+        const formGroups = document.querySelectorAll('.form-group')
+        const buttons = document.querySelectorAll('button')
+      
+        mainFotos.classList.toggle('dark-mode')
+        dashboardPerfil.classList.toggle('dark-mode')
+      
+        formGroups.forEach((group) => group.classList.toggle('dark-mode'))
+      
+        buttons.forEach((button) => button.classList.toggle('dark-mode'))
+      
+        // Alterar o ícone entre lua crescente (modo claro) e lua cheia (modo escuro)
+        if (document.body.classList.contains('dark-mode')) {
+          themeIcon.classList.remove('fa-moon')
+          themeIcon.classList.add('fa-sun')
+        } else {
+          themeIcon.classList.remove('fa-sun')
+          themeIcon.classList.add('fa-moon')
+        }
+      })
+    </script>
+    <script>
+      // Função para alternar o modo escuro para a dashboard-section
+      function toggleDarkMode() {
+        const dashboardSection = document.querySelector('.dashboard-section')
+        dashboardSection.classList.toggle('dark-mode') // Alterna a classe dark-mode na dashboard-section
+      
+        // Você pode adicionar aqui o código para alternar o modo escuro para outros elementos
+        document.body.classList.toggle('dark-mode')
+        document.querySelectorAll('.form-group').forEach((group) => {
+          group.classList.toggle('dark-mode')
+        })
+        document.querySelectorAll('.field-half').forEach((field) => {
+          field.classList.toggle('dark-mode')
+        })
+        document.querySelectorAll('.field-thirsty').forEach((field) => {
+          field.classList.toggle('dark-mode')
+        })
+      }
+
+      // A constante "atualizar_info_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript atualizar_info_Url
+      const atualizar_info_Url = "{% url 'atualizar_info_profPJ' %}";   
+
+    </script>
+    <footer>
+      <p>&copy; 2024 Dashboard de Fotografias</p>
+    </footer>
+  </body>
+</html>
