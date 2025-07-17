@@ -88,10 +88,10 @@ DATABASES = {
         'charset': 'utf8mb4',
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
-        'NAME': 'db_pixel_singular',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'ctg3cpwh139o37td',
+        'USER': 'cacxg5hurgaf1oaf',
+        'PASSWORD': 'd9pwz7xuthhs1y31',
+        'HOST': 'w1h4cr5sb73o944p.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
