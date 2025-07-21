@@ -12,7 +12,7 @@ from django.core.files.base import ContentFile
 # from datetime import datetime
 from django.views.decorators.http import require_POST
 # !!! Importante: Aqui está sendo importadas as models de app_01 !!!
-from .models import Fotografos, FotografosPf, FotografosPj, EnderecosFotografos, Categorias, Fotografias
+from app_01.models import Fotografos, FotografosPf, FotografosPj, EnderecosFotografos, Categorias, Fotografias
 
 
 # FUNÇÕES DE LOGIN E LOGOUT

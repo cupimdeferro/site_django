@@ -15,77 +15,77 @@ class Adms(models.Model):
     senha_adm = models.CharField(max_length=10)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'adms'
 
+# class AuthGroup(models.Model):
+#     name = models.CharField(unique=True, max_length=150)
 
-class AuthGroup(models.Model):
-    name = models.CharField(unique=True, max_length=150)
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group'
-
-
-class AuthGroupPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    group_id = models.IntegerField()
-    permission_id = models.IntegerField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_group_permissions'
-        unique_together = (('group_id', 'permission_id'),)
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_group'
 
 
-class AuthPermission(models.Model):
-    name = models.CharField(max_length=255)
-    content_type_id = models.IntegerField()
-    codename = models.CharField(max_length=100)
+# class AuthGroupPermissions(models.Model):
+#     id = models.BigAutoField(primary_key=True)
+#     group_id = models.IntegerField()
+#     permission_id = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'auth_permission'
-        unique_together = (('content_type_id', 'codename'),)
-
-
-class AuthUser(models.Model):
-    password = models.CharField(max_length=128)
-    last_login = models.DateTimeField(blank=True, null=True)
-    is_superuser = models.IntegerField()
-    username = models.CharField(unique=True, max_length=150)
-    first_name = models.CharField(max_length=150)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=254)
-    is_staff = models.IntegerField()
-    is_active = models.IntegerField()
-    date_joined = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'auth_user'
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_group_permissions'
+#         unique_together = (('group_id', 'permission_id'),)
 
 
-class AuthUserGroups(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user_id = models.IntegerField()
-    group_id = models.IntegerField()
+# class AuthPermission(models.Model):
+#     name = models.CharField(max_length=255)
+#     content_type_id = models.IntegerField()
+#     codename = models.CharField(max_length=100)
 
-    class Meta:
-        managed = False
-        db_table = 'auth_user_groups'
-        unique_together = (('user_id', 'group_id'),)
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_permission'
+#         unique_together = (('content_type_id', 'codename'),)
 
 
-class AuthUserUserPermissions(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    user_id = models.IntegerField()
-    permission_id = models.IntegerField()
+# class AuthUser(models.Model):
+#     password = models.CharField(max_length=128)
+#     last_login = models.DateTimeField(blank=True, null=True)
+#     is_superuser = models.IntegerField()
+#     username = models.CharField(unique=True, max_length=150)
+#     first_name = models.CharField(max_length=150)
+#     last_name = models.CharField(max_length=150)
+#     email = models.CharField(max_length=254)
+#     is_staff = models.IntegerField()
+#     is_active = models.IntegerField()
+#     date_joined = models.DateTimeField()
 
-    class Meta:
-        managed = False
-        db_table = 'auth_user_user_permissions'
-        unique_together = (('user_id', 'permission_id'),)
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_user'
+
+
+# class AuthUserGroups(models.Model):
+#     id = models.BigAutoField(primary_key=True)
+#     user_id = models.IntegerField()
+#     group_id = models.IntegerField()
+
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_user_groups'
+#         unique_together = (('user_id', 'group_id'),)
+
+
+# class AuthUserUserPermissions(models.Model):
+#     id = models.BigAutoField(primary_key=True)
+#     user_id = models.IntegerField()
+#     permission_id = models.IntegerField()
+
+#     class Meta:
+#         # managed = False
+#         db_table = 'auth_user_user_permissions'
+#         unique_together = (('user_id', 'permission_id'),)
+
 
 
 class Categorias(models.Model):
@@ -93,7 +93,7 @@ class Categorias(models.Model):
     descricao_categoria = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'categorias'
 
 
@@ -107,53 +107,53 @@ class Clientes(models.Model):
     senha_cliente = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'clientes'
 
 
-class DjangoAdminLog(models.Model):
-    action_time = models.DateTimeField()
-    object_id = models.TextField(blank=True, null=True)
-    object_repr = models.CharField(max_length=200)
-    action_flag = models.PositiveSmallIntegerField()
-    change_message = models.TextField()
-    content_type_id = models.IntegerField(blank=True, null=True)
-    user_id = models.IntegerField()
+# class DjangoAdminLog(models.Model):
+#     action_time = models.DateTimeField()
+#     object_id = models.TextField(blank=True, null=True)
+#     object_repr = models.CharField(max_length=200)
+#     action_flag = models.PositiveSmallIntegerField()
+#     change_message = models.TextField()
+#     content_type_id = models.IntegerField(blank=True, null=True)
+#     user_id = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'django_admin_log'
-
-
-class DjangoContentType(models.Model):
-    app_label = models.CharField(max_length=100)
-    model = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'django_content_type'
-        unique_together = (('app_label', 'model'),)
+#     class Meta:
+#         # managed = False
+#         db_table = 'django_admin_log'
 
 
-class DjangoMigrations(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
+# class DjangoContentType(models.Model):
+#     app_label = models.CharField(max_length=100)
+#     model = models.CharField(max_length=100)
 
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
+#     class Meta:
+#         # managed = False
+#         db_table = 'django_content_type'
+#         unique_together = (('app_label', 'model'),)
 
 
-class DjangoSession(models.Model):
-    session_key = models.CharField(primary_key=True, max_length=40)
-    session_data = models.TextField()
-    expire_date = models.DateTimeField()
+# class DjangoMigrations(models.Model):
+#     id = models.BigAutoField(primary_key=True)
+#     app = models.CharField(max_length=255)
+#     name = models.CharField(max_length=255)
+#     applied = models.DateTimeField()
 
-    class Meta:
-        managed = False
-        db_table = 'django_session'
+#     class Meta:
+#         # managed = False
+#         db_table = 'django_migrations'
+
+
+# class DjangoSession(models.Model):
+#     session_key = models.CharField(primary_key=True, max_length=40)
+#     session_data = models.TextField()
+#     expire_date = models.DateTimeField()
+
+#     class Meta:
+#         # managed = False
+#         db_table = 'django_session'
 
 
 class EnderecosClientes(models.Model):
@@ -167,7 +167,7 @@ class EnderecosClientes(models.Model):
     fk_id_cliente = models.ForeignKey(Clientes, models.DO_NOTHING, db_column='fk_id_cliente')
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'enderecos_clientes'
 
 
@@ -182,7 +182,7 @@ class EnderecosFotografos(models.Model):
     fk_id_fotografo = models.ForeignKey('Fotografos', models.DO_NOTHING, db_column='fk_id_fotografo')
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'enderecos_fotografos'
 
 
@@ -199,7 +199,7 @@ class Fotografias(models.Model):
     fk_id_categoria = models.ForeignKey(Categorias, models.DO_NOTHING, db_column='fk_id_categoria')
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'fotografias'
 
 
@@ -217,11 +217,12 @@ class Fotografos(models.Model):
     fk_id_fotografo_pf = models.ForeignKey('FotografosPf', models.DO_NOTHING, db_column='fk_id_fotografo_pf', blank=True, null=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'fotografos'
 
     def __str__(self):
         return f"{self.nome_fotografo}" 
+
 
 
 class FotografosPf(models.Model):
@@ -232,7 +233,7 @@ class FotografosPf(models.Model):
     genero_fotografo_pf = models.CharField(max_length=15)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'fotografos_pf'
 
 
@@ -242,7 +243,7 @@ class FotografosPj(models.Model):
     razao_social_fotografo_pj = models.CharField(max_length=100)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'fotografos_pj'
 
 
@@ -251,7 +252,7 @@ class FotografosServicos(models.Model):
     fk_id_servico = models.ForeignKey('Servicos', models.DO_NOTHING, db_column='fk_id_servico')
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'fotografos_servicos'
         unique_together = (('fk_id_fotografo', 'fk_id_servico'),)
 
@@ -263,7 +264,7 @@ class Servicos(models.Model):
     quantidade_servico = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'servicos'
 
 
@@ -272,9 +273,10 @@ class ServicosClientes(models.Model):
     fk_id_cliente = models.ForeignKey(Clientes, models.DO_NOTHING, db_column='fk_id_cliente')
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'servicos_clientes'
         unique_together = (('fk_id_servico', 'fk_id_cliente'),)
+
 
 
 class ServicosTiposDeServicos(models.Model):
@@ -282,10 +284,9 @@ class ServicosTiposDeServicos(models.Model):
     fk_id_tipo_de_servico = models.ForeignKey('TiposDeServicos', models.DO_NOTHING, db_column='fk_id_tipo_de_servico')
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'servicos_tipos_de_servicos'
         unique_together = (('fk_id_servico', 'fk_id_tipo_de_servico'),)
-
 
 class TiposDeServicos(models.Model):
     id_tipo_de_servico = models.AutoField(primary_key=True)
@@ -293,5 +294,5 @@ class TiposDeServicos(models.Model):
     valor_tipo_de_servico = models.FloatField()
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'tipos_de_servicos'
