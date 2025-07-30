@@ -16,7 +16,7 @@ from app_01.models import Fotografos, FotografosPf, FotografosPj, EnderecosFotog
 
 
 # FUNÇÕES DE LOGIN E LOGOUT
-def Logar_profPF(request):
+def Loga_profPF(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         senha = request.POST.get('senha')
@@ -34,7 +34,7 @@ def Logar_profPF(request):
                 request.session['fotografo_imagem_sessao'] = fotografo.imagem_perfil_fotografo.url if fotografo.imagem_perfil_fotografo else None
 
                 # Obtém a URL dinamicamente
-                redirect_url = reverse('carregar_home_page')
+                redirect_url = reverse('carrega_home_page')
 
                 return JsonResponse({'success': True, 'message': 'Login realizado com sucesso!', 'redirect_url': redirect_url})
             else:
@@ -46,7 +46,7 @@ def Logar_profPF(request):
     return render(request, 'app_01/form_profissionalPF.html')
 
 
-def Logar_profPJ(request):
+def Loga_profPJ(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         senha = request.POST.get('senha')
@@ -64,7 +64,7 @@ def Logar_profPJ(request):
                 request.session['fotografo_imagem_sessao'] = fotografo.imagem_perfil_fotografo.url if fotografo.imagem_perfil_fotografo else None
 
                 # Obtém a URL dinamicamente
-                redirect_url = reverse('carregar_home_page')
+                redirect_url = reverse('carrega_home_page')
 
                 return JsonResponse({'success': True, 'message': 'Login realizado com sucesso!', 'redirect_url': redirect_url})
             else:
@@ -77,7 +77,7 @@ def Logar_profPJ(request):
 
 def Logout_prof(request):
     request.session.flush()  # Remove todos os dados da sessão
-    return redirect('carregar_home_page')
+    return redirect('carrega_home_page')
 
 
 # Função para criar um decorador personalizado para verificar o login de sessão do Fotógrafo PF
@@ -101,7 +101,7 @@ def fotografoPJ_login_required(view_func):
 # FUNÇÕES PARA CARREGAR TEMPLATES DO DASHBOARD E RENDERIZAR INFORMAÇÕES
 @fotografoPF_login_required
 @fotografoPJ_login_required
-def Carregar_dashboard(request):
+def Carrega_dashboard(request):
     fotografo_id = request.session.get('fotografo_id_sessao')
     fotografo = Fotografos.objects.get(id_fotografo=fotografo_id)
 
@@ -126,7 +126,7 @@ def Carregar_dashboard(request):
 
 @fotografoPF_login_required
 @fotografoPJ_login_required
-def Carregar_info_profissional(request):
+def Carrega_edicao_info_prof(request):
     fotografo_id = request.session.get('fotografo_id_sessao')
     fotografo = get_object_or_404(Fotografos, id_fotografo=fotografo_id)
 
@@ -164,33 +164,12 @@ def Carregar_info_profissional(request):
 
     return render(request, 'info_profissional.html', contexto)
 
-def Carregar_info_suporte(request):
+def Carrega_suporte(request):
     return render(request, 'suporte.html')
 
 
 
 # FUNÇÕES PARA FUNCIONALIDADES DE EDIÇÃO DE DADOS E UPLOAD DE IMAGENS
-
-# @fotografoPJ_login_required
-# def Carregar_info_profPJ(request):
-#     fotografo_id = request.session.get('fotografo_id_sessao')
-#     fotografo = get_object_or_404(Fotografos, id_fotografo=fotografo_id)
-
-#     try:
-#         fotografo_pj = FotografosPj.objects.get(id_fotografo_pj=fotografo.fk_id_fotografo_pj.id_fotografo_pj)
-#     except FotografosPj.DoesNotExist:
-#         fotografo_pj = None
-
-#     try:
-#         endereco = EnderecosFotografos.objects.get(fk_id_fotografo=fotografo)
-#     except EnderecosFotografos.DoesNotExist:
-#         endereco = None
-
-#     return render(request, 'edicao_perfil_PF.html', {
-#         'fotografo': fotografo,
-#         'fotografo_pj': fotografo_pj,
-#         'endereco': endereco
-#     })
 
 
 @csrf_exempt
@@ -315,7 +294,7 @@ def Atualizar_info_profPJ(request):
     return JsonResponse({'success': False, 'message': 'Não foi possível atualizar seus dados!'})
 
 
-def Carregar_info_fotografia(request):
+def Carrega_upload_fotografia(request):
     fotografo_id = request.session.get('fotografo_id_sessao')
     objeto_fotografo = get_object_or_404(Fotografos, id_fotografo=fotografo_id)
 

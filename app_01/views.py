@@ -4,27 +4,91 @@ from django.db import transaction
 from django.http import JsonResponse
 from django.contrib.auth.hashers import make_password
 from django.urls import reverse
-from .models import Fotografos, FotografosPf, FotografosPj, EnderecosFotografos, Clientes, EnderecosClientes
+from .models import Fotografos, FotografosPf, FotografosPj, EnderecosFotografos, Clientes, EnderecosClientes, Fotografias
 
 # Create your views here.
 
-def Ir_Home_Page(request):
+# FUNÇÕES PARA CARREGAR TEMPLATES DA PÁGINA INDEX E RENDERIZAR INFORMAÇÕES
+
+def Carrega_home_page(request):
     return render(request, 'index.html')
 
-def Ir_Port_Moda(request):
-    return render(request, 'profissionais/port_moda.html')
+def Carrega_galeria(request):
+    fotos = Fotografias.objects.select_related('fk_id_fotografo').all()
+    return render(request, 'galeria.html', {'fotos': fotos})
 
-def Ir_Port_Casamento(request):
-    return render(request, 'profissionais/port_casamento.html')
+# CATEGORIAS DO DROPDOWN NO NAVBAR
 
-def Ir_Login_ProfPF(request):
+def categoria_ambiente(request):
+    return render(request, 'categoria_ambiente.html')
+
+def categoria_formatura(request):
+    return render(request, 'categoria_formatura.html')
+
+def categoria_moda(request):
+    return render(request, 'profissionais/categoria_moda.html')
+
+def categoria_aniversario(request):
+    return render(request, 'profissionais/categoria_aniversario.html')
+
+def categoria_batizado(request):
+    return render(request, 'profissionais/categoria_batizado.html')
+
+def categoria_casamento(request):
+    return render(request, 'profissionais/categoria_casamento.html')
+
+def categoria_publicidade(request):
+    return render(request, 'profissionais/categoria_publicidade.html')
+
+def categoria_arquitetura(request):
+    return render(request, 'profissionais/categoria_arquitetura.html')
+
+def categoria_esporte(request):
+    return render(request, 'profissionais/categoria_esporte.html')
+
+def categoria_filmmaker(request):
+    return render(request, 'profissionais/categoria_filmmaker.html')
+
+def categoria_newborn(request):
+    return render(request, 'profissionais/categoria_newborn.html')
+
+def categoria_gestante(request):
+    return render(request, 'profissionais/categoria_gestante.html')
+
+def categoria_gastronomia(request):
+    return render(request, 'profissionais/categoria_gastronomia.html')
+
+# SUBCATEGORIAS
+
+def sub_show(request):
+    return render(request, 'profissionais/sub_show.html')
+
+def sub_palestra(request):
+    return render(request, 'profissionais/sub_palestra.html')
+
+def sub_festa(request):
+    return render(request, 'profissionais/sub_festa.html')
+
+def sub_geral(request):
+    return render(request, 'profissionais/sub_geral.html')
+
+def sub_externo(request):
+    return render(request, 'profissionais/sub_externo.html')
+
+def sub_estudio(request):
+    return render(request, 'profissionais/sub_estudio.html')
+
+
+def Carrega_login_profPF(request):
     return render(request, 'profissionais/form_profissionalPF.html')
 
-def Ir_Login_ProfPJ(request):
+def Carrega_login_profPJ(request):
     return render(request, 'profissionais/form_profissionalPJ.html')
 
+def Carrega_login_cliente (request):
+    return render(request, 'clientes/login_form_cliente.html')
 
-def Cadastrar_ProfPF(request):
+def Cadastra_profPF(request):
     if request.method == 'POST':
         # Função para remover caracteres não numéricos da string "valor" e retornar apenas os caracteres numéricos sem espaços entre eles   
         def limpar_dados(valor):
@@ -93,63 +157,8 @@ def Cadastrar_ProfPF(request):
         except Exception as e:
             print(f"Erro ao cadastrar o fotógrafo: {e}")
             return JsonResponse({'success': False, 'message': 'Erro ao cadastrar. Tente novamente.'})
-
-
-def Ir_Login_Cliente (request):
-    return render(request, 'clientes/login_form_cliente.html')
-
-def Cadastrar_Cliente (request):
-    if request.method == 'POST':
-        # Função para remover caracteres não numéricos da string "valor" e retornar apenas os caracteres numéricos sem espaços entre eles  
-        def limpar_dados(valor):
-            return ''.join(filter(str.isdigit, valor))
-        # Dados recebidos do formulário
-        nome = request.POST['nome']
-        cpf = limpar_dados(request.POST['cpf'])
-        genero = request.POST['genero']
-        telefone = limpar_dados(request.POST['telefone'])
-        email = request.POST['email']
-        cep = limpar_dados(request.POST['cep'])
-        estado = request.POST['estado']
-        cidade = request.POST['cidade']
-        logradouro = request.POST['logradouro']
-        bairro = request.POST['bairro']
-        numero = request.POST['numero']
-        senha = make_password(request.POST['senha']) # A senha é Criptografada antes de ser salva 
-
-        try:
-            with transaction.atomic():
-                # Criação do Cliente
-                cliente = Clientes.objects.create(
-                    nome_cliente=nome,
-                    cpf_cliente=cpf,
-                    genero_cliente=genero,
-                    telefone_cliente=telefone,
-                    email_cliente=email,
-                    senha_cliente=senha,
-                )
-                # Criação do Endereço
-                EnderecosClientes.objects.create(
-                    cep_endereco_cliente=cep,
-                    logradouro_endereco_cliente=logradouro,
-                    numero_endereco_cliente=numero,
-                    bairro_endereco_cliente=bairro,
-                    cidade_endereco_cliente=cidade,
-                    estado_endereco_cliente=estado,
-                    fk_id_cliente=cliente,
-                )
-
-                # Obtém a URL dinamicamente
-                redirect_url = reverse('login_cliente_page')
-                
-                # Retorna uma resposta JSON de sucesso
-                return JsonResponse({'success': True, 'message': 'Cadastro realizado com sucesso!', 'redirect_url': redirect_url})
-            
-        except Exception as e:
-            print(f"Erro ao cadastrar o fotógrafo: {e}")
-            return JsonResponse({'success': False, 'message': 'Erro ao cadastrar. Tente novamente.'})
     
-def Cadastrar_ProfPJ(request):
+def Cadastra_profPJ(request):
     if request.method == 'POST':
         # Função para remover caracteres não numéricos da string "valor" e retornar apenas os caracteres numéricos sem espaços entre eles   
         def limpar_dados(valor):
@@ -214,6 +223,59 @@ def Cadastrar_ProfPJ(request):
         except Exception as e:
             print(f"Erro ao cadastrar o fotógrafo: {e}")
             return JsonResponse({'success': False, 'message': 'Erro ao cadastrar. Tente novamente.'})
+    
+
+def Cadastra_cliente (request):
+    if request.method == 'POST':
+        # Função para remover caracteres não numéricos da string "valor" e retornar apenas os caracteres numéricos sem espaços entre eles  
+        def limpar_dados(valor):
+            return ''.join(filter(str.isdigit, valor))
+        # Dados recebidos do formulário
+        nome = request.POST['nome']
+        cpf = limpar_dados(request.POST['cpf'])
+        genero = request.POST['genero']
+        telefone = limpar_dados(request.POST['telefone'])
+        email = request.POST['email']
+        cep = limpar_dados(request.POST['cep'])
+        estado = request.POST['estado']
+        cidade = request.POST['cidade']
+        logradouro = request.POST['logradouro']
+        bairro = request.POST['bairro']
+        numero = request.POST['numero']
+        senha = make_password(request.POST['senha']) # A senha é Criptografada antes de ser salva 
+
+        try:
+            with transaction.atomic():
+                # Criação do Cliente
+                cliente = Clientes.objects.create(
+                    nome_cliente=nome,
+                    cpf_cliente=cpf,
+                    genero_cliente=genero,
+                    telefone_cliente=telefone,
+                    email_cliente=email,
+                    senha_cliente=senha,
+                )
+                # Criação do Endereço
+                EnderecosClientes.objects.create(
+                    cep_endereco_cliente=cep,
+                    logradouro_endereco_cliente=logradouro,
+                    numero_endereco_cliente=numero,
+                    bairro_endereco_cliente=bairro,
+                    cidade_endereco_cliente=cidade,
+                    estado_endereco_cliente=estado,
+                    fk_id_cliente=cliente,
+                )
+
+                # Obtém a URL dinamicamente
+                redirect_url = reverse('login_cliente_page')
+                
+                # Retorna uma resposta JSON de sucesso
+                return JsonResponse({'success': True, 'message': 'Cadastro realizado com sucesso!', 'redirect_url': redirect_url})
+            
+        except Exception as e:
+            print(f"Erro ao cadastrar o fotógrafo: {e}")
+            return JsonResponse({'success': False, 'message': 'Erro ao cadastrar. Tente novamente.'})
+
 
 
 

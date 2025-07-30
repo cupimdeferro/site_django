@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style_login_form_profissional_PF.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/form_profissional.css' %}">
     <!-- Referência ao arquivo JavaScript -->
     <script src="{% static 'javascript/login_form_profissional_script.js' %}" defer></script>    
     <title>Login/Cadastro ProfissionalPF</title>
@@ -17,7 +17,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form id="login-form" method="POST" action="{% url 'logar_profPF' %}" > <!-- Em caso de erro tentar usar id="loginForm" -->
+            <form id="login-form" method="POST" action="{% url 'loga_profPF' %}" > <!-- Em caso de erro tentar usar id="loginForm" -->
                 {% csrf_token %}
                 <h1>Login</h1>
                 <div class="social-icons">
@@ -43,7 +43,7 @@
 
 
         <div class="form-container sign-up">
-            <form id="form-send" method="POST" action="{% url 'cadastro_profPF_page' %}" enctype="multipart/form-data">
+            <form id="form-send" method="POST" action="{% url 'cadastra_profPF' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h1>Cadastre-se</h1>
                 <!-- <span>ou use seu email para cadastro</span> -->
@@ -128,145 +128,17 @@
     <!-- Carregar a URL dinamicamente -->
     <script>
         // A constante "cad_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript cad_Url
-        const cad_Url = "{% url 'cadastro_profPF_page' %}";
+        const cad_Url = "{% url 'cadastra_profPF' %}";
 
         // A constante "log_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript login_Url
         const login_Url = "{% url 'login_profPF_page' %}";  
 
         // Procedimento similar aos anteriores
-        const home_Url = "{% url 'carregar_home_page' %}";
+        const home_Url = "{% url 'carrega_home_page' %}";
 
         // Procedimento similar aos anteriores
-        const logar_Url = "{% url 'logar_profPF' %}";        
+        const logar_Url = "{% url 'loga_profPF' %}";        
 
     </script>
 </body>
 </html>
-
-{% comment %} <!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style_login_form_profissional_PF.css' %}">
-    <title>Login Page</title>
-</head>
-
-<body>
-
-    <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form id="form-send" method="POST" action="{% url 'cadastro_profPF_page' %}" enctype="multipart/form-data">
-                {% csrf_token %}
-                <h1>Cadastre-se</h1>
-                <!-- <span>ou use seu email para cadastro</span> -->
-                <div class="form-group">                    
-                    <input class="field-half" name="nome" type="text" placeholder="Nome Completo" required>
-                    <input class="field-half" name="nome_profissional" type="text" placeholder="Como você é conhecido?">
-            
-                    <!-- Demais campos em pares, lado a lado -->
-                    <input class="field-half" name="data_nascimento" type="date" placeholder="Data de Nascimento" required>
-                    <input class="field-half" name="cpf" type="text" maxlength="14" placeholder="CPF" required>
-
-                    <select class="field-half" name="genero" id="genero" required>
-                        <option value="">Gênero</option>
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                    <input class="field-half" name="telefone" id="telefone" type="tel" placeholder="(00) 90000-0000" maxlength="15" required>
-                    <input class="field-half" name="email" id="email" type="email" placeholder="Email" required>
-                    <input class="field-half" name="confirmar_email" id="confirmar_email" type="email" placeholder="Confirmar Email" required>
-
-                    <input class="field-thirsty" name="cep" id="cep" type="text" placeholder="CEP" required>
-                    <input class="field-thirsty" name="estado" id="estado" type="text" placeholder="Estado" required>
-                    <input class="field-thirsty" name="cidade" id="cidade" type="text" placeholder="Cidade" required>
-
-                    <input class="field-thirsty" name="logradouro" id="logradouro" type="text" placeholder="Logradouro" required>
-                    <input class="field-thirsty" name="bairro" id="bairro" type="text" placeholder="Bairro" required>
-                    <input class="field-thirsty" name="numero" type="text" placeholder="Nº" required>
-
-                    <input class="field-half" name="senha" id="senha" type="password" placeholder="Senha" required>
-                    <input class="field-half" id="confirmar_senha" type="password" placeholder="Confirmar Senha" required>
-
-                    <select class="field-half" name="raio_atendimento" id="raio_atendimento" required>
-                        <option value="">Raio de Atendimento</option>
-                        <option value="10km">Até 10km</option>
-                        <option value="20km">Até 20km</option>
-                        <option value="50km">Até 50km</option>
-                        <option value="20km">Até 70km</option>
-                        <option value="100km">Até 100km</option>
-                        <option value="km_livre">Atendimento após orçamento</option>
-                        <option value="0km">Atendimento online</option>
-                    </select>
-                    
-                    <input class="input_bigger" name="link_instagram" type="url" placeholder="Link do Instagram" maxlength="100">
-                    
-                    <textarea class="field-full" name="descricao" placeholder="Fotógrafo, faça uma descrição que aparecerá no seu perfil..."></textarea> 
-                    
-                    <div class="field-half">
-                        <label class="image_perfil">Escolha uma imagem de perfil:</label>
-                        <input class="field-half" name="imagem" id="image_perfil" type="file" accept="image/*" placeholder="Carregar imagem" required>
-                    </div>                                                       
-                    <div class="termos">
-                        <input type="checkbox" id="termos" required>
-                        <label for="termos">Aceitar os termos de cadastro de acordo com a LGPD</label>
-                    </div>          
-                </div>         
-                <button type="submit">Enviar</button>
-            </form>            
-        </div>
-        <div class="form-container sign-in">
-            <form id="login-form" method="POST" action="{% url 'logar_profPF' %}">
-                {% csrf_token %}
-                <h1>Entrar</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                </div>
-                <!-- <span>ou use sua senha de email</span> -->
-                <input class="login" name="email" type="email" id="login-email" placeholder="Email" required>
-                <input class="login" name="senha" type="password" id="login-senha" placeholder="Senha" required>
-                <a href="#">Esqueceu sua senha?</a>
-                <button type="submit" class="">Entrar</button>
-            </form>
-        </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Caro Fotógrafo!</h1>
-                    <p>Insira seus dados pessoais para usar todos os recursos do site</p>
-                    <button class="hidden" id="login">Entrar</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Olá, Fotógrafo!</h1>
-                    <p>Cadastre-se para utilizar todos os recursos do site</p>
-                    <button class="hidden" id="register">Inscrever</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Carregar a URL dinamicamente -->
-    <script>
-        // A constante "cad_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript cad_Url
-        const cad_Url = "{% url 'cadastro_profPF_page' %}";
-
-        // A constante "log_Url" recebe a URL gerada pelo Django, ou seja, o valor gerado é atribuído à variável JavaScript log_Url
-        const login_Url = "{% url 'login_profPF_page' %}";  
-
-        // Procedimento similar aos anteriores
-        const home_Url = "{% url 'home_page' %}";
-
-        // Procedimento similar aos anteriores
-        const logar_Url = "{% url 'logar_profPF' %}";        
-
-    </script>
-    
-    <!-- Referência ao arquivo JavaScript -->
-    <script src="{% static 'javascript/login_form_profissional_script.js' %}" defer></script>    
-</body>
-
-</html> {% endcomment %}

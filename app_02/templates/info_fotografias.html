@@ -154,6 +154,7 @@
         document.getElementById('editImage').src = url;   // photos[currentPhotoIndex]; // Exibe a foto 
         document.getElementById('editModal').style.display = "block"; // Exibe a modal
     }
+    
 {% comment %} 
     function openModal(url) {
       document.getElementById('modalImage').src = url;
@@ -344,7 +345,7 @@
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            fetch("{% url 'deletar_fotografia' %}", {
+            fetch("{% url 'deleta_fotografia' %}", {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': getCookie('csrftoken'),
