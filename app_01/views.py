@@ -20,10 +20,10 @@ def Carrega_galeria(request):
 # CATEGORIAS DO DROPDOWN NO NAVBAR
 
 def categoria_ambiente(request):
-    return render(request, 'categoria_ambiente.html')
+    return render(request, 'categorias/categoria_ambiente.html')
 
 def categoria_formatura(request):
-    return render(request, 'categoria_formatura.html')
+    return render(request, 'categorias/categoria_formatura.html')
 
 def categoria_moda(request):
     return render(request, 'profissionais/categoria_moda.html')
@@ -61,7 +61,7 @@ def categoria_gastronomia(request):
 # SUBCATEGORIAS
 
 def sub_show(request):
-    return render(request, 'profissionais/sub_show.html')
+    return render(request, 'categorias/sub_show.html')
 
 def sub_palestra(request):
     return render(request, 'profissionais/sub_palestra.html')

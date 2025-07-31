@@ -1,0 +1,150 @@
+{% load static %}
+<div class="container navbar" id="navbar-header">
+  <button class="navbar-toggler" data-toggle="open-navbar1">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="logo">
+    <a href="{% url 'carrega_home_page' %}">
+      <img src="/media/images/logo.png" alt="Logo Pixel Singular" />
+      <h4 class="logo__title">Pixel<span>Singular</span></h4>
+    </a>
+  </div>
+
+  <div class="navbar-menu" id="open-navbar1">
+    <ul class="navbar-nav">
+      <li class="active">
+        <a href="{% url 'carrega_home_page' %}">Home</a>
+      </li>
+      <li class="navbar-dropdown">
+        <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-id">Categorias <i class="fa-solid fa-angle-down"></i></a>
+        <ul class="dropdown" id="my-dropdown-id">
+          <li>
+            <a href="{% url 'categoria_formatura' %}"><i class="bi bi-mortarboard"></i> Formatura</a>
+          </li>
+          <li>
+            <a href="{% url 'categoria_ambiente' %}"><i class="fa-solid fa-seedling"></i> Ambiente</a>
+          </li>
+          <li>
+            <a href="#" id="evento-link"><i class="fa-solid fa-calendar-days"></i> Evento <i class="fa-solid fa-angle-right submenu-arrow"></i></a>
+            <ul class="subcategory-dacategory" id="sub-dropdow-evento">
+              <li>
+                <a href="{% url 'subcategoria_show' %}"><i class="fa-solid fa-holly-berry"></i>Show</a>
+              </li>
+              <li>
+                <a href="subcategoria_palestra.html"><i class="fa-brands fa-slack"></i>Palestra</a>
+              </li>
+              <li>
+                <a href="subcategoria_festa.html"><i class="bi bi-boombox-fill"></i>Festa</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="categoria_aniversario.html"><i class="bi bi-gift"></i> Aniversário</a>
+          </li>
+          <li>
+            <a href="categoria_arquitetura.html"><i class="fa-solid fa-archway"></i> Arquitetura</a>
+          </li>
+          <li>
+            <a href="#" id="ensaio-link"><i class="fa-solid fa-vest-patches"></i> Ensaio <i class="fa-solid fa-angle-right submenu-arrow"></i></a>
+            <ul class="subcategory2-dacategory" id="sub-dropdow-ensaio">
+              <li>
+                <a href="subcategoria_Geral.html"><i class="fa-solid fa-holly-berry"></i>Geral</a>
+              </li>
+              <li>
+                <a href="subcategoria_Externo.html"><i class="fa-solid fa-globe"></i>Externo</a>
+              </li>
+              <li>
+                <a href="subcategoria_studio.html"><i class="fa-solid fa-camera"></i>Estudio</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="categoria_esporte.html"><i class="fa-solid fa-medal"></i> Esporte</a>
+          </li>
+          <li>
+            <a href="categoria_filmmaker.html"><i class="fa-solid fa-film"></i> Filmmaker</a>
+          </li>
+          <li>
+            <a href="categoria_newborn.html"><i class="fa-solid fa-baby"></i> Newborn</a>
+          </li>
+          <li>
+            <a href="categoria_moda.html"><i class="bi bi-sunglasses"></i> Moda</a>
+          </li>
+          <li>
+            <a href="categoria_casamento.html"><i class="fa-solid fa-ring"></i> Casamento</a>
+          </li>
+          <li>
+            <a href="categoria_gestante.html"><i class="bi bi-heart"></i> Gestante</a>
+          </li>
+          <li>
+            <a href="categoria_gastronomia.html"><i class="fa-solid fa-utensils"></i> Gastronomia</a>
+          </li>
+          <li>
+            <a href="categoria_publicidade.html"><i class="fa-solid fa-tv"></i> Publicidade</a>
+          </li>
+          <li>
+            <a href="categoria_batizado.html"><i class="fa-solid fa-water"></i> Batizado</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="galeria.html">Galeria</a>
+      </li>
+
+      <li class="navbar-dropdown">
+        <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-fotografo"><i class="bi bi-camera"></i> Fotógrafo <i class="fa-solid fa-angle-down"></i></a>
+        <ul class="dropdown" id="my-dropdown-fotografo">
+          <li>
+            <a href="{% url 'login_profPF_page' %}"><i class="bi bi-person-badge"></i> Pessoa Física</a>
+          </li>
+          <li>
+            <a href="{% url 'login_profPJ_page' %}"><i class="fa-solid fa-building"></i> Pessoa Jurídica</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- Cliente -->
+      <li>
+        <a href="formulario_cliente.html"><i class="bi bi-person"></i> Cliente</a>
+      </li>
+    </ul>
+  </div>
+  {% if request.session.fotografo_id_sessao %}
+    <div class="dropdown_user">
+      <div class="dropdown dropdown-toggle-wrapper">
+        <!-- Adicionamos um checkbox invisível para controlar o estado -->
+        <input type="checkbox" id="dropdownToggle" class="dropdown-checkbox" />
+
+        <label for="dropdownToggle" class="dropdown-label">
+          <img src="{% if request.session.fotografo_imagem_sessao %}
+              {{ request.session.fotografo_imagem_sessao }}
+            {% else %}
+              {% static 'images/perfis/imagem_padrao.png' %}
+            {% endif %}" />
+        </label>
+
+        <div class="dropdown-content">
+          <a href="#"><i class="fa-regular fa-address-card"></i> Perfil</a>
+          <a href="{% url 'carrega_dashboard' %}"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
+          <a href="{% url 'logout_prof' %}"><i class="bi bi-box-arrow-left"></i> Sair</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="dropdown_user">
+      <div class="dropdown dropdown-toggle-wrapper">
+        <!-- Adicionamos um checkbox invisível para controlar o estado -->
+        <input type="checkbox" id="dropdownToggle" class="dropdown-checkbox" />
+
+        <label for="dropdownToggle" class="dropdown-label"><img src="/media/images/home/icone_logado.jpg" alt="User" /></label>
+      </div>
+    </div>
+  {% endif %}
+  <div class="search-box">
+    <input class="search-txt" type="text" name="" placeholder="Faça sua pesquisa" />
+    <a class="search-btn" href="#"><i class="fas fa-search"></i></a>
+  </div>
+</div>
