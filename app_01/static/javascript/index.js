@@ -136,42 +136,100 @@ document.getElementById('commentForm').addEventListener('submit', function (even
 
 // ////////// <!---------- Script para manipular o menu amburguer em telas menores ----------> ///////////////
 
+// document.addEventListener("DOMContentLoaded", function () {
+//   const toggler = document.querySelector(".navbar-toggler");
+//   const menu = document.querySelector(".navbar-menu");
+
+//   toggler.addEventListener("click", function () {
+//     toggler.classList.toggle("open");  // Anima o botão hambúrguer
+//     menu.classList.toggle("active");   // Mostra/oculta o menu
+//   });
+
+//   // Fecha o menu ao clicar fora dele
+//   document.addEventListener("click", function (event) {
+//     if (!menu.contains(event.target) && !toggler.contains(event.target)) {
+//       menu.classList.remove("active");
+//       toggler.classList.remove("open");
+//     }
+//   });
+// });
+
+
+// document.querySelectorAll('.navbar-dropdown > a').forEach(item => {
+//   // Comportamento para mobile
+//   item.addEventListener('click', function (e) {
+//     if (window.innerWidth <= 992) {
+//       e.preventDefault();
+//       this.parentElement.classList.toggle('active');
+//     }
+//   });
+
+//   // Efeito hover para desktop
+//   item.addEventListener('mouseenter', function () {
+//     if (window.innerWidth > 992) {
+//       this.parentElement.classList.add('hover');
+//     }
+//   });
+
+//   item.addEventListener('mouseleave', function () {
+//     if (window.innerWidth > 992) {
+//       setTimeout(() => {
+//         if (!this.parentElement.matches(':hover')) {
+//           this.parentElement.classList.remove('hover');
+//         }
+//       }, 200);
+//     }
+//   });
+// });
+
+// // Fechar menus ao clicar fora
+// document.addEventListener('click', function (e) {
+//   if (window.innerWidth > 992) {
+//     if (!e.target.closest('.navbar-dropdown')) {
+//       document.querySelectorAll('.navbar-dropdown').forEach(dropdown => {
+//         dropdown.classList.remove('hover');
+//       });
+//     }
+//   }
+// });
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const toggler = document.querySelector(".navbar-toggler");
   const menu = document.querySelector(".navbar-menu");
 
   toggler.addEventListener("click", function () {
-    toggler.classList.toggle("open");  // Anima o botão hambúrguer
-    menu.classList.toggle("active");   // Mostra/oculta o menu
+      toggler.classList.toggle("open");  // Anima o botão hambúrguer
+      menu.classList.toggle("active");   // Mostra/oculta o menu
   });
 
   // Fecha o menu ao clicar fora dele
   document.addEventListener("click", function (event) {
-    if (!menu.contains(event.target) && !toggler.contains(event.target)) {
-      menu.classList.remove("active");
-      toggler.classList.remove("open");
-    }
+      if (!menu.contains(event.target) && !toggler.contains(event.target)) {
+          menu.classList.remove("active");
+          toggler.classList.remove("open");
+      }
   });
 });
 
 
 document.querySelectorAll('.navbar-dropdown > a').forEach(item => {
   // Comportamento para mobile
-  item.addEventListener('click', function (e) {
+  item.addEventListener('click', function(e) {
     if (window.innerWidth <= 992) {
       e.preventDefault();
       this.parentElement.classList.toggle('active');
     }
   });
-
+  
   // Efeito hover para desktop
-  item.addEventListener('mouseenter', function () {
+  item.addEventListener('mouseenter', function() {
     if (window.innerWidth > 992) {
       this.parentElement.classList.add('hover');
     }
   });
-
-  item.addEventListener('mouseleave', function () {
+  
+  item.addEventListener('mouseleave', function() {
     if (window.innerWidth > 992) {
       setTimeout(() => {
         if (!this.parentElement.matches(':hover')) {
@@ -183,7 +241,7 @@ document.querySelectorAll('.navbar-dropdown > a').forEach(item => {
 });
 
 // Fechar menus ao clicar fora
-document.addEventListener('click', function (e) {
+document.addEventListener('click', function(e) {
   if (window.innerWidth > 992) {
     if (!e.target.closest('.navbar-dropdown')) {
       document.querySelectorAll('.navbar-dropdown').forEach(dropdown => {
