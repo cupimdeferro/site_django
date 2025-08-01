@@ -27,7 +27,7 @@ body {
   /* display: flex; align-items: center; organiza os elementos no centro e em linha (horizontal). */
   align-items: center;
   /* Deixa os itens centralizados no conteiner */
-  margin-left: 35px;
+  margin-left: 240px;
 }
 
 .search-txt {
@@ -1287,7 +1287,7 @@ body {
     /* padding: 10px; adiciona um espaço interno ao redor dos elementos. */
     border-radius: 40px;
     /* border-radius: 40px; deixa as bordas arredondadas, dando um aspecto de pílula. */
-    margin-left: 200px;
+    margin-left: 240px;
 
   }
 
@@ -1351,13 +1351,14 @@ body {
 /* Estilos para tablets (768px ou mais) */
 @media (min-width: 768px) {
   .navbar-menu {
-      position: relative;
-      top: auto;
+      /* position: relative;
+      top: auto; */
       left: auto;
       flex-direction: row;
       align-items: center;
       padding: 0;
       background-color: transparent;
+      background-color: #ffffff;
   }
 }
 
@@ -1378,7 +1379,7 @@ body {
   /* Media Query para telas maiores (opcional) */
   @media (min-width: 768px) {
     .navbar-menu {
-      width: 300px;
+      width: 100%;
       /* Largura fixa para desktop */
       left: -300px;
       /* Igual à largura */

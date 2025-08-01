@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    
+  <head>    
+
     {% include 'categorias/conteudo_head.html' %}
 
+    <title>Categoria Ambiente</title>
+    
   </head>
   <body>
 
@@ -155,48 +157,6 @@
 <button class="back-to-top" title="Voltar ao topo">
     <i class="fas fa-arrow-up"></i>
 </button>
-  <!-- Depois os scripts -->
-  {% load static %}
- 
-
-  <script>
-    // Versão robusta do botão Voltar ao Topo
-    document.addEventListener('DOMContentLoaded', function () {
-      const backToTopBtn = document.querySelector('.back-to-top');
-
-      if (!backToTopBtn) {
-        console.error('Botão "Voltar ao Topo" não encontrado');
-        return;
-      }
-
-      function handleScroll() {
-        if (window.scrollY > 300) {
-          backToTopBtn.classList.add('active');
-        } else {
-          backToTopBtn.classList.remove('active');
-        }
-      }
-
-      // Debounce para melhor performance
-      let isScrolling;
-      window.addEventListener('scroll', () => {
-        clearTimeout(isScrolling);
-        isScrolling = setTimeout(handleScroll, 50);
-      });
-
-      backToTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-
-      // Verifica posição inicial
-      handleScroll();
-    });
-  </script>
-  <!-- ////////////////////////NavbarJS//////////////////////////////////////////  -->
   
 </body>
 

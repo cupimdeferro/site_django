@@ -26,10 +26,10 @@ def categoria_formatura(request):
     return render(request, 'categorias/categoria_formatura.html')
 
 def categoria_moda(request):
-    return render(request, 'profissionais/categoria_moda.html')
+    return render(request, 'categorias/categoria_moda.html')
 
 def categoria_aniversario(request):
-    return render(request, 'profissionais/categoria_aniversario.html')
+    return render(request, 'categorias/categoria_aniversario.html')
 
 def categoria_batizado(request):
     return render(request, 'profissionais/categoria_batizado.html')
@@ -41,7 +41,7 @@ def categoria_publicidade(request):
     return render(request, 'profissionais/categoria_publicidade.html')
 
 def categoria_arquitetura(request):
-    return render(request, 'profissionais/categoria_arquitetura.html')
+    return render(request, 'categorias/categoria_arquitetura.html')
 
 def categoria_esporte(request):
     return render(request, 'profissionais/categoria_esporte.html')
@@ -64,19 +64,19 @@ def sub_show(request):
     return render(request, 'categorias/sub_show.html')
 
 def sub_palestra(request):
-    return render(request, 'profissionais/sub_palestra.html')
+    return render(request, 'categorias/sub_palestra.html')
 
 def sub_festa(request):
-    return render(request, 'profissionais/sub_festa.html')
+    return render(request, 'categorias/sub_festa.html')
 
 def sub_geral(request):
-    return render(request, 'profissionais/sub_geral.html')
+    return render(request, 'categorias/sub_geral.html')
 
 def sub_externo(request):
-    return render(request, 'profissionais/sub_externo.html')
+    return render(request, 'categorias/sub_externo.html')
 
 def sub_estudio(request):
-    return render(request, 'profissionais/sub_estudio.html')
+    return render(request, 'categorias/sub_estudio.html')
 
 
 def Carrega_login_profPF(request):
