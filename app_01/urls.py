@@ -29,4 +29,5 @@ urlpatterns = [
     path('sub/geral/', views.sub_geral, name='subcategoria_geral'),
     path('sub/externo/', views.sub_externo, name='subcategoria_externo'),
     path('sub/estudio/', views.sub_estudio, name='subcategoria_estudio'),
+    path('sub/estudio/', views.sub_estudio, name='subcategoria_estudio'),
 ]

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/galeria.css' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'javascript/galeria.js' %}" defer ></script>
+
+    <title>Galeria de Fotos</title>
+</head>
+
+<body>
+
+    {% include 'categorias/conteudo_navbar.html' %}
+    <h1 style="font-size: 50px; text-align: center; padding: 30px; color: rgb(0, 0, 0);">Galeria</h1>
+
+
+    <div class="row">
+
+        <div class="column">
+
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img1.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Camila Costa</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img2.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Felipe Beltrão</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img3.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Nome do Fotógrafo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img4.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Dayseane Gonçalves</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img5.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Dayane Silva</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img6.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Rafaela Valente</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img7.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Gracy Barbosa</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img8.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Nome do Fotógrafo</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img9.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Nome do Fotógrafo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img10.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Guilherme Santos</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img11.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Nome do Fotógrafo</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img12.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Nome do Fotógrafo</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="column">
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img1.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Camila Costa</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img2.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Felipe Beltrão</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img3.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Nome do Fotógrafo</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="column">
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img4.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Dayseane Gonçalves</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img5.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Dayane Silva</span>
+                    </a>
+                </div>
+            </div>
+            <div class="img-hover-zoom">
+                <div class="heart">
+                    <i class="far fa-heart"></i> <!-- Coração vazio -->
+                    <i class="fas fa-heart" style="display: none;"></i> <!-- Coração preenchido -->
+                </div>
+                <img src="/media/images/galeria/img6.jpg" style="width:100%" alt="">
+                <div class="info">
+                    <a href="" style="width:50%">
+                        <img src="/media/images/galeria/fotografa.jpeg" alt="Photographer" class="photographer-photo">
+                        <span class="photographer-name">Rafaela Valente</span>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+        
+        <!-- Modal para Imagem Expandida -->
+        <div id="modalImage" class="modal-image">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <img class="modal-content" id="expandedImage">
+            <!-- Botões de Navegação -->
+            <a class="prev-btn" id="prevImage">&#10094;</a>
+            <a class="next-btn" id="nextImage">&#10095;</a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-wave"></div> <!-- Opcional -->
+        <div class="footer-container">
+            <div class="footer-info">
+                <a href="#" class="footer-logo">PixelSingular</a>
+            </div>
+
+            <div class="footer-social">
+                <h4 class="social-title">Nossas Redes</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
+
+                </div>
+            </div>
+
+            <div class="footer-creators">
+                <p>© 2023 PixelSingular. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer -->
+    </footer>
+
+    <!-- Botão Voltar ao Topo - DEVE vir aqui -->
+    <button class="back-to-top" title="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>
+
+</html>

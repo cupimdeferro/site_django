@@ -173,7 +173,7 @@ nav ul li>ul {
   .dropdown-toggler{
     content: '\25BC';
     /* Adiciona uma seta indicando que é um dropdown */
-    margin-left: 8px;
+    /* margin-left: 0px; */
     /* font-size: 12px; */
   }
 
@@ -2410,4 +2410,27 @@ body {
 
 .back-to-top i {
   font-size: 20px;
+}
+
+
+.seta-responsiva {
+  display: inline-block;
+  transition: transform 0.3s ease; /* Animação suave */
+}
+
+/* DEFAULT (mobile) - Seta para BAIXO */
+.seta-responsiva {
+  transform: rotate(0deg);
+}
+
+/* Telas GRANDES (desktop) - Seta para DIREITA */
+@media (min-width: 992px) {
+  .seta-responsiva {
+    transform: rotate(-90deg);
+  }
+}
+
+.icone-virado-para-baixo {
+  transform: rotate(90deg);
+  display: inline-block; /* Necessário para que a transformação funcione */
 }
