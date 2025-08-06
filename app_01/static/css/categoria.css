@@ -157,6 +157,12 @@ nav ul li>ul {
   display: block;
 }
 
+/* Classe de rotação do ícone do dropdown de categorias */
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
 /* Responsividade: menu como dropdown em dispositivos móveis */
 @media (max-width: 768px) {
   .navbar-dropdown ul.dropdown {
@@ -1264,7 +1270,7 @@ body {
 
 /* Links do dropdown */
 .dropdown li a {
-  color: white;
+  color: #333;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -1272,9 +1278,18 @@ body {
 }
 
 /* Efeito hover nos links do dropdown */
+.dropdown li:hover {
+  background-color: #f1f3f9;
+}
+/* Efeito hover nos links do dropdown */
 .dropdown li a:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
+    /* Azul ao passar o mouse */
+  color: #4361ee !important;
+  background-color: #f1f3f9;
+}
+
+.dropdown li i:hover{
+  color: #4361ee;
 }
 
 /* Estilos para telas menores que 768px */
@@ -1462,8 +1477,9 @@ body {
   text-decoration: none;
 }
 
-.subcategory-dacategory li a:hover {
-  color: #007BFF;
+.dropdown .subcategory-dacategory li:hover {
+  color: rgb(62, 62, 116);
+  background-color: #f1f3f9;
 }
 
 .subcategory-dacategory.show-subcategory {
@@ -1498,8 +1514,9 @@ body {
   text-decoration: none;
 }
 
-.subcategory2-dacategory li a:hover {
-  color: #007BFF;
+.dropdown .subcategory2-dacategory li:hover {
+  color: rgb(62, 62, 116);
+  background-color: #f1f3f9;
 }
 
 .subcategory2-dacategory.show-subcategory {
