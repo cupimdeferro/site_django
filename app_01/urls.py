@@ -26,7 +26,7 @@ urlpatterns = [
     path('sub/show/', views.sub_show, name='subcategoria_show'),
     path('sub/palestra/', views.sub_palestra, name='subcategoria_palestra'),
     path('sub/festa/', views.sub_festa, name='subcategoria_festa'),
-    path('sub/geral/', views.sub_geral, name='sub_geral'),
-    path('sub/externo/', views.sub_externo, name='sub_externo'),
-    path('sub/estudio/', views.sub_estudio, name='sub_estudio'),
+    path('sub/geral/', views.sub_geral, name='subcategoria_geral'),
+    path('sub/externo/', views.sub_externo, name='subcategoria_externo'),
+    path('sub/estudio/', views.sub_estudio, name='subcategoria_estudio'),
 ]

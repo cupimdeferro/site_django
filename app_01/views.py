@@ -32,31 +32,31 @@ def categoria_aniversario(request):
     return render(request, 'categorias/categoria_aniversario.html')
 
 def categoria_batizado(request):
-    return render(request, 'profissionais/categoria_batizado.html')
+    return render(request, 'categorias/categoria_batizado.html')
 
 def categoria_casamento(request):
-    return render(request, 'profissionais/categoria_casamento.html')
+    return render(request, 'categorias/categoria_casamento.html')
 
 def categoria_publicidade(request):
-    return render(request, 'profissionais/categoria_publicidade.html')
+    return render(request, 'categorias/categoria_publicidade.html')
 
 def categoria_arquitetura(request):
     return render(request, 'categorias/categoria_arquitetura.html')
 
 def categoria_esporte(request):
-    return render(request, 'profissionais/categoria_esporte.html')
+    return render(request, 'categorias/categoria_esporte.html')
 
 def categoria_filmmaker(request):
-    return render(request, 'profissionais/categoria_filmmaker.html')
+    return render(request, 'categorias/categoria_filmmaker.html')
 
 def categoria_newborn(request):
-    return render(request, 'profissionais/categoria_newborn.html')
+    return render(request, 'categorias/categoria_newborn.html')
 
 def categoria_gestante(request):
-    return render(request, 'profissionais/categoria_gestante.html')
+    return render(request, 'categorias/categoria_gestante.html')
 
 def categoria_gastronomia(request):
-    return render(request, 'profissionais/categoria_gastronomia.html')
+    return render(request, 'categorias/categoria_gastronomia.html')
 
 # SUBCATEGORIAS
 

@@ -1,308 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/categoria.css' %}">
 
-    <!-- Bootstrap para disposição da imagens do Carroussel -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-
-    <!-- Link para obter o ícone "lupa" na biblioteca Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <!-- Link para obter alguns ícones de categorias do dropdwon na biblioteca Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-
+    {% include 'categorias/conteudo_head.html' %}
     <title>Newborn</title>
+
   </head>
   <body>
-    <div class="container navbar" id="navbar-header">
-  
-      <button class="navbar-toggler" data-toggle="open-navbar1">
-        <span></span>
-        <span></span>
-        <span></span>
+    
+    {% include 'categorias/conteudo_navbar.html' %}
+
+    <h1 style="font-size: 50px; text-align: center; padding: 30px;">Newborn</h1>
+
+    <!-- ////////////////// caroucel carousel////////////// -->
+
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/media/images/categorias/recem/new1.jpeg" class="d-block w-100" alt="Imagem 1" />
+        </div>
+        <div class="carousel-item">
+          <img src="/media/images/categorias/recem/new2.jpeg" class="d-block w-100" alt="Imagem 2" />
+        </div>
+        <div class="carousel-item">
+          <img src="/media/images/categorias/recem/new3.jpg" class="d-block w-100" alt="Imagem 3" />
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
       </button>
-      <div class="logo">
-        <a href="{% url 'carregar_home_page' %}">
-          <img src="/media/images/categorias/ambiente/LoGoimg.png" alt="Logo Pixel Singular">
-          <h4 class="logo__title">Pixel<span>Singular</span></h4>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Próximo</span>
+      </button>
+    </div>
+
+    <div class="description">
+      <h2>Primeiros Instantes: A Magia do Início da Vida</h2>
+      <p>Retratando a doçura, a pureza e os detalhes que tornam cada novo começo inesquecível</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="photo-section">
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new5.jpeg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
         </a>
       </div>
-  
-  
-      <div class="navbar-menu" id="open-navbar1">
-        <ul class="navbar-nav">
-          <li class="active"><a href="{% url 'carregar_home_page' %}">Home</a></li>
-          <li class="navbar-dropdown">
-            <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-id">
-              Categorias  <i class="fa-solid fa-angle-down"></i>
-            </a>
-            <ul class="dropdown" id="my-dropdown-id">
-              <li><a href="{% url 'categoria_formatura' %}"><i class="bi bi-mortarboard"></i> Formatura</a></li>
-              <li><a href="{% url 'categoria_ambiente' %}"><i class="fa-solid fa-seedling"></i> Ambiente</a></li>
-              <li>
-                <a href="#" id="evento-link">
-                  <i class="fa-solid fa-calendar-days"></i> Evento <i class="fa-solid fa-angle-right"></i>
-                </a>
-                <ul class="subcategory-dacategory" id="sub-dropdow-evento">
-                  <li><a href="{% url 'sub_show' %}"><i class="fa-solid fa-holly-berry"></i>Show</a></li>
-                  <li><a href="{% url 'sub_palestra' %}"><i class="fa-brands fa-slack"></i>Palestra</a></li>
-                  <li><a href="{% url 'sub_festa' %}"><i class="bi bi-boombox-fill"></i>Festa</a></li>
-                </ul>
-              </li>
-              <li><a href="{% url 'categoria_aniversario' %}"><i class="bi bi-gift"></i> Aniversário</a></li>
-              <li><a href="{% url 'categoria_arquitetura' %}"><i class="fa-solid fa-archway"></i> Arquitetura</a></li>
-              <li><a href="#" id="ensaio-link">
-                  <i class="fa-solid fa-vest-patches"></i>
-                  Ensaio <i class="fa-solid fa-angle-right"></i>
-                </a>
-                <ul class="subcategory2-dacategory" id="sub-dropdow-ensaio">
-                  <li><a href="{% url 'sub_geral' %}"><i class="fa-solid fa-holly-berry"></i>Geral</a></li>
-                  <li><a href="{% url 'sub_externo' %}"><i class="fa-solid fa-globe"></i>Externo</a></li>
-                  <li><a href="{% url 'sub_estudio' %}"><i class="fa-solid fa-camera"></i>Estudio</a></li>
-                </ul>
-              </li>
-              <li><a href="{% url 'categoria_esporte' %} "><i class="fa-solid fa-medal"></i> Esporte</a></li>
-              <li><a href="{% url 'categoria_filmmaker' %}"><i class="fa-solid fa-film"></i> Filmmaker</a></li>
-              <li><a href="{% url 'categoria_newborn' %}"><i class="fa-solid fa-baby"></i> Newborn</a></li>
-              <li><a href="{% url 'categoria_moda' %}"><i class="bi bi-sunglasses"></i> Moda</a></li>
-              <li><a href="{% url 'categoria_casamento' %}"><i class="fa-solid fa-ring"></i> Casamento</a></li>
-              <li><a href="{% url 'categoria_gestante' %}"><i class="bi bi-heart"></i> Gestante</a></li>
-              <li><a href="{% url 'categoria_gastronomia' %}"><i class="fa-solid fa-utensils"></i> Gastronomia</a></li> 
-              <li><a href="{% url 'categoria_publicidade' %}"><i class="fa-solid fa-tv"></i> Publicidade</a></li>
-              <li><a href="{% url 'categoria_batizado' %}"><i class="fa-solid fa-water"></i> Batizado</a></li>
-            </ul>
-          </li>
-  
-          <li><a href="{% url 'galeria_page' %}">Galeria</a></li>
-  
-          <li class="navbar-dropdown">
-            <a href="#" class="dropdown-toggler" data-dropdown="my-dropdown-fotografo">
-              <i class=" bi bi-camera"></i> Fotógrafo <i class="fa-solid fa-angle-down"></i>
-            </a>
-            <ul class="dropdown" id="my-dropdown-fotografo">
-              <li><a href="formulario_profissional_PF.html"><i class="bi bi-person-badge"></i> Pessoa Física</a></li>
-              <li><a href="formulario_profissional_PJ.html"><i class="fa-solid fa-building"></i> Pessoa Jurídica</a></li>
-            </ul>
-          </li>
-  
-          <!-- Cliente -->
-          <li><a href="formulario_cliente.html"><i class="bi bi-person"></i> Cliente</a></li>
-  
-        </ul>
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new6.jpg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card01_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
       </div>
-      {% if request.session.fotografo_id_sessao %}
-        <div class="dropdown_user">
-          <div class="dropdown dropdown-toggle-wrapper">
-            <!-- Adicionamos um checkbox invisível para controlar o estado -->
-            <input type="checkbox" id="dropdownToggle" class="dropdown-checkbox">
-    
-            <label for="dropdownToggle" class="dropdown-label">
-              <img src="https://conteudo.imguol.com.br/blogs/174/files/2018/05/iStock-648229868-1024x909.jpg" alt="User" />
-            </label>
-    
-            <div class="dropdown-content">
-              <a href="#"><i class="fa-regular fa-address-card"></i> Perfil</a>
-              <a href="{% url 'carregar_dashboard' %}"><i class="fa-solid fa-table-columns"></i> Dashboard</a>
-              <a href="{% url 'logout_prof' %}"><i class="fa-solid fa-calendar"></i> Sair</a>
-            </div>
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new7.jpg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
+      </div>
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new8.jpg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card01_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
+      </div>
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new9.jpg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
+      </div>
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new10.jpg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/portifolio_casamento/icon_card01_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
+      </div>
+
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new1.jpeg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
+      </div>
+      <div class="photo-card">
+        <img src="/media/images/categorias/recem/new9.jpg" alt="Main Photo" class="main-photo" />
+        <a href="link-to-photographer-page.html" class="photographer-card">
+          <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer" class="photographer-photo" />
+          <span class="photographer-name">Nome do Fotógrafo</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-wave"></div> <!-- Opcional -->
+
+      <div class="footer-container">
+        <div class="footer-info">
+          <a href="#" class="footer-logo">PixelSingular</a>
+        </div>
+
+        <div class="footer-social">
+          <h4 class="social-title">Nossas Redes</h4>
+          <div class="social-links">
+            <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
-      {% endif %}
-      <div class="search-box">
-        <input class="search-txt" type="text" name="" placeholder="Faça sua pesquisa">
-        <a class="search-btn" href="#">
-          <i class="fas fa-search"></i>
-        </a>
-      </div>
-    </div>
-  
 
-
-
-  <h1 style="font-size: 70px; text-align: center; padding: 30px;">Newborn</h1>
-
-  <!-- ////////////////// caroucel carousel////////////// -->
-
-  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/media/images/categorias/recem/new1.jpeg" class="d-block w-100" alt="Imagem 1">
-      </div>
-      <div class="carousel-item">
-        <img src="/media/images/categorias/recem/new2.jpeg" class="d-block w-100" alt="Imagem 2">
-      </div>
-      <div class="carousel-item">
-        <img src="/media/images/categorias/recem/new3.jpg" class="d-block w-100" alt="Imagem 3">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Anterior</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Próximo</span>
-    </button>
-  </div>
-
-  <div class="description">
-    <h2>Primeiros Instantes: A Magia do Início da Vida</h2>
-    <p>Retratando a doçura, a pureza e os detalhes que tornam cada novo começo inesquecível</p>
-  </div>
-
-  <!-- Cards -->
-  <div class="photo-section">
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new5.jpeg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new6.jpg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card01_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new7.jpg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new8.jpg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card01_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new9.jpg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new10.jpg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/portifolio_casamento/icon_card01_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new1.jpeg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-    <div class="photo-card">
-      <img src="/media/images/categorias/recem/new9.jpg" alt="Main Photo" class="main-photo">
-      <a href="link-to-photographer-page.html" class="photographer-card">
-        <img src="/media/images/categorias/casamento/icon_card02_casamento.png" alt="Photographer"
-          class="photographer-photo">
-        <span class="photographer-name">Nome do Fotógrafo</span>
-      </a>
-    </div>
-
-  </div>
-
-  <!-- Repita o bloco .photo-card para outros cards -->
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-wave"></div> <!-- Opcional -->
-
-    <div class="footer-container">
-      <div class="footer-info">
-        <a href="#" class="footer-logo">PixelSingular</a>
-      </div>
-
-      <div class="footer-social">
-        <h4 class="social-title">Nossas Redes</h4>
-        <div class="social-links">
-          <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="social-link whatsapp"><i class="fab fa-whatsapp"></i></a>
-
+        <div class="footer-creators">
+          <p>© 2023 PixelSingular. Todos os direitos reservados.</p>
         </div>
       </div>
-
-      <div class="footer-creators">
-        <p>© 2023 PixelSingular. Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  {% load static %}
-  <script src="{% static 'javascript/categoria.js' %}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const container = document.getElementById('img-container');
-    const images = container.querySelectorAll('img');
-    const totalImages = images.length;
-    let currentIndex = 0;
-
-    function moveCarrousel() {
-      currentIndex++;
-      if (currentIndex >= totalImages) {
-        currentIndex = 0;
-      }
-      container.style.transform = `translateX(${-currentIndex * 500}px)`;
-    }
-
-
-    setInterval(moveCarrousel, 3000);
-  </script>
-  <script>
-    ////////////////// Java do caroucel carousel//////////////
-    let slideIndex = 0;
-
-    function showSlides() {
-      const slides = document.querySelector('.slides');
-      const totalSlides = slides.children.length;
-      if (slideIndex >= totalSlides) slideIndex = 0;
-      if (slideIndex < 0) slideIndex = totalSlides - 1;
-      slides.style.transform = `translateX(${-slideIndex * 100}%)`;
-    }
-
-    function moveSlide(n) {
-      slideIndex += n;
-      showSlides();
-    }
-
-    showSlides(); // Initialize the carousel
-  </script>
-
-
-  <!-- ////////////////////////NavbarJS//////////////////////////////////////////  -->
-  <script src="{% static 'javascript/dropdown.js' %}"></script>
-</body>
-
+    </footer>
+  </body>
 </html>

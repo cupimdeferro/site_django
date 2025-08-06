@@ -1,3 +1,5 @@
+// ///////// <!------ Início do script para manipular o menu suspenso do Navbar -------> ////////
+
 document.addEventListener('DOMContentLoaded', () => {
     const dropdownButtons = document.querySelectorAll('.dropdown-toggler');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -66,6 +68,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Lógica para manipular o Submenu Evento //
+const eventoLink = document.getElementById("evento-link");
+const subcategory = document.getElementById("sub-dropdow-evento");
+
+if (eventoLink && subcategory) {
+  eventoLink.addEventListener("click", function (e) {
+    e.preventDefault(); // Evita comportamento padrão
+    // e.stopPropagation(); // <--- impede a propagação
+    subcategory.classList.toggle("show-subcategory");
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!subcategory.contains(event.target) && !eventoLink.contains(event.target)) {
+      subcategory.classList.remove("show-subcategory");
+    }
+  });
+}
+
+// Lógica para manipular o Submenu Ensaio //
+const ensaioLink = document.getElementById("ensaio-link");
+const subcat = document.getElementById("sub-dropdow-ensaio");
+
+if (ensaioLink && subcat) {
+  ensaioLink.addEventListener("click", function (e) {
+    e.preventDefault(); // Evita comportamento padrão
+    // e.stopPropagation(); // <--- impede a propagação
+    subcat.classList.toggle("show-subcategory");
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!subcat.contains(event.target) && !ensaioLink.contains(event.target)) {
+      subcat.classList.remove("show-subcategory");
+    }
+  });
+}
 
 
 // ////////// <!---------- Script para manipular o menu amburguer em telas menores ----------> ///////////////
