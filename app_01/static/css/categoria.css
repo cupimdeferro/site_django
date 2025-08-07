@@ -77,6 +77,18 @@ body {
   /* cursor: pointer; mostra o cursor de "mão" ao passar sobre o botão, indicando que ele é clicável. */
 }
 
+/* Links da lista de navegação */
+.container a {
+  color: #66f;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  /* Transição suave para hover */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* Espaço entre ícone e texto */
+}
 
 
 
