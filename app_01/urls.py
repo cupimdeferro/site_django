@@ -30,4 +30,5 @@ urlpatterns = [
     path('sub/externo/', views.sub_externo, name='subcategoria_externo'),
     path('sub/estudio/', views.sub_estudio, name='subcategoria_estudio'),
     path('sub/estudio/', views.sub_estudio, name='subcategoria_estudio'),
+    path('perfil/', views.Carrega_perfil, name='carrega_perfil'),
 ]

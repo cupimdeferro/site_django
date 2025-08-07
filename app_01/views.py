@@ -78,12 +78,15 @@ def sub_externo(request):
 def sub_estudio(request):
     return render(request, 'categorias/sub_estudio.html')
 
-
 def Carrega_login_profPF(request):
     return render(request, 'profissionais/form_profissionalPF.html')
 
 def Carrega_login_profPJ(request):
     return render(request, 'profissionais/form_profissionalPJ.html')
+
+def Carrega_perfil(request):
+    return render(request, 'profissionais/perfil.html')
+
 
 def Carrega_login_cliente (request):
     return render(request, 'clientes/login_form_cliente.html')
